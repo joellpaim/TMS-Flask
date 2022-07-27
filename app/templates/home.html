@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Home - TMS
+{% endblock %}
+
+{% block content %}
+
+	{% with msgs =  get_flashed_messages(with_categories=True) %}
+	{% for c, msg in msgs %}
+		{% if c == 'error' %}
+			<div class="flash-error">
+		{% else %}
+			<div class="success">
+		{% endif %}
+			{{ msg | safe}}</div><br>
+	{% endfor %}
+	{% endwith %}
+
+	
+	{% if search %}
+	<h3>Resultado da busca por "{{ query }}":</h3>		
+	{% else %}
+
+	<div class="container-xl">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Máquinas</h2>
+					<div class="row">
+						{% for maquina in maquinas %}
+						<div class="col-sm-3 mb-3">
+							<div class="card" style="width: 18rem;">
+								<img src="{{ maquina.image }}" class="card-img-top" alt="{{ maquina.name }}">
+								<div class="card-body">
+								  <h5 class="card-title">95{{ maquina.code }}</h5>
+								  <h6 class="card-text">{{ maquina.name }}</h6>
+								  <p class="card-text">{{ maquina.details }}</p>
+								  <a href="#" class="btn btn-detalhe">Ver detalhes</a>
+								  <a href="#" class="btn btn-disp">Dispositivos</a>
+								  <a href="#" class="btn btn-ferr">Ferramentas</a>
+								</div>
+							  </div>
+						</div>	
+						{% endfor %}					
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	{% endif %}
+
+
+	
+	{% if not maquinas %}
+	<div class="flash-error">
+		Nenhuma maquina cadastrada.<br>
+		<a href="{{ url_for('home') }}"></a>
+	</div>
+	{% endif %}
+	
+
+{% endblock %}

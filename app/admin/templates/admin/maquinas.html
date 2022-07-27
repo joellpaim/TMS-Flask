@@ -1,0 +1,61 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+	Máquinas - TMS
+{% endblock %}
+<script src="https://js.stripe.com/v3/"></script>
+{% block content %}
+	{% with msgs =  get_flashed_messages(with_categories=True) %}
+	{% for c, msg in msgs %}
+		{% if c == 'error' %}
+			<div class="flash-error">
+		{% else %}
+			<div class="success">
+		{% endif %}
+			{{ msg }}</div><br>
+	{% endfor %}
+	{% endwith %}
+
+    {% if not maquinas %}
+		<div class="dp-flex">
+		<div class="add-new btn-success btn">
+			<a href="{{ url_for('admin.addmaq') }}" class="text-light">Adicionar máquina</a>
+		</div>
+		<div class="add-new btn-success btn">
+			<a href="{{ url_for('admin.cleartable',type='maquinas') }}" class="text-light">Limpar tabela</a>
+		</div>
+		</div>
+		<div class="flash-error">Não há máquinas cadastradas.</div>
+	{% else %}
+    <div class="add-new btn-success btn">
+        <a href="{{ url_for('admin.addmaq') }}" class="text-light">Adicionar máquina</a>
+    </div>
+	<div class="add-new btn-success btn">
+		<a href="{{ url_for('admin.cleartable',type='maquinas') }}" class="text-light">Limpar tabela</a>
+	</div>
+	<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <th>Item id</th>
+            <th>Nome</th>
+			<th>Img Link</th>
+            <th>Detalhes</th>
+            <th>Operações</th>
+        </tr>
+    {% for maquina in maquinas %}
+        <tr>
+            <td>{{ maquina.id }}</td>
+            <td>{{ maquina.name }}</td>
+			<td>{{ maquina.image[:15] }}...</td>
+            <td>{{ maquina.details[:40] | safe }}...</td>
+			<td>
+                <a href="{{ url_for('admin.edit', type='maquina', id=maquina.id) }}">&#9998;</a>
+				<a href="{{ url_for('admin.delete', type='maquina', id=maquina.id) }}">&#10060;</a>
+			</td>
+        </tr>
+    {% endfor %}
+    </table>
+	</div>
+
+	{% endif %}
+{% endblock %}
