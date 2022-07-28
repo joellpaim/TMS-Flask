@@ -40,6 +40,7 @@
 			<table>
 				<tr>
 					<th>Item id</th>
+					<th>Código</th>
 					<th>Nome</th>
 					<th>Img Link</th>
 					<th>Detalhes</th>
@@ -48,12 +49,13 @@
 			{% for maquina in maquinas %}
 				<tr>
 					<td>{{ maquina.id }}</td>
+					<td>{{ maquina.code }}</td>
 					<td>{{ maquina.name }}</td>
 					<td>{{ maquina.image[:15] }}...</td>
 					<td>{{ maquina.details[:40] | safe }}...</td>
 					<td>
 						<a href="{{ url_for('admin.edit', type='maquina', id=maquina.id) }}">&#9998;</a>
-						<a href="{{ url_for('admin.delete', type='maquina', id=maquina.id) }}">&#10060;</a>
+						<a href="{{ url_for('admin.delete', type='maquinas', id=maquina.id) }}">&#10060;</a>
 					</td>
 				</tr>
 			{% endfor %}

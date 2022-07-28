@@ -17,23 +17,39 @@
 	{% endwith %}
 
 			<div class="card">
-				<div class="img-wrapper">
-					<img src="{{ maquina.image }}" class="pic">
+				<div class="img-wrapper" >
+					<img src="{{ maquina.image }}" style="max-height: 500px;">
 				</div>
-				<b>{{ maquina.name }}</b>
-				<span class="right-item">{{ maquina.code }}</span><br>                
-                <div class="details">{{ maquina.details | safe }}</div>                
-				</a>
+				<div class="right-item" style="float: right;">
+					<b>{{ maquina.name }}</b>
+					<span class="right-item">{{ maquina.code }}</span><br>                
+					<div class="details">{{ maquina.details | safe }}</div>                
+				</div>
 			</div>
-			<div class="container text-center">
-				<h3>Dispositivos</h3><br>
-				{% for dispositivo in maquina.dispositivos %}
-					<div class="item">
-						<h3>{{ dispositivo.code }}</h3>
-						<h3>{{ dispositivo.name }}</h3>
+			{% if maquina.dispositivos %}
+			<div class="container">
+			<h3 class="mt-3 text-center">Dispositivos</h3><br>
+				<div class="row">
+					{% for dispositivo in maquina.dispositivos %}
+					<div class="col-sm-3 mg-3">			
+							
+						
+							<div class="card">
+								<div class="img-wrapper" >
+									<img src="{{ dispositivo.image }}" style="max-height: 200px;">
+								</div>
+								<h3>{{ dispositivo.code }}</h3>
+								<h3>{{ dispositivo.name }}</h3>
+							</div>
+						
 					</div>
-				{% endfor %}
+					
+					{% endfor %}
+				</div>
 			</div>
+			{% else %}
+				<h3 class="text-center">Sem dispositivos cadastrados</h3>
+			{% endif %}
 
 {% endblock %}
 

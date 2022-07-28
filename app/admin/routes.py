@@ -86,16 +86,42 @@ def addmaq():
     if form.validate_on_submit():
         code = form.code.data
         name = form.name.data        
-        #category = form.category.data
+        category_id = form.category_id.data
         details = form.details.data
         form.image.data.save('app/static/uploads/' + form.image.data.filename)
         image = url_for(
             'static', filename=f'uploads/{form.image.data.filename}')
         
-        maquina = Maquina(code=code, name=name,
+        maquina = Maquina(code=code, name=name, category_id=category_id,
                     details=details, image=image)
-        db.session.add(maquina)
-        db.session.commit()
+        
+        lista = form.dispositivos.data
+        for v in lista:
+            dispositivo = Dispositivo.query.get(v)
+        
+            maquina.dispositivos.append(dispositivo)
+            
+            db.session.add(maquina)
+            db.session.commit()  
+
+        lista = form.items.data
+        for v in lista:
+            item = Item.query.get(v)
+        
+            maquina.itens.append(item)
+            
+            db.session.add(maquina)
+            db.session.commit() 
+
+        lista = form.ferramentas.data
+        for v in lista:
+            ferramenta = Ferramenta.query.get(v)
+        
+            maquina.ferramentas.append(ferramenta)
+            
+            db.session.add(maquina)
+            db.session.commit() 
+
         flash(f'{name} adicionado com sucesso!', 'success')
         return redirect(url_for('admin.maquinas'))
     return render_template("admin/add.html", form=form)
@@ -119,10 +145,8 @@ def add_dispositivo():
         dispositivo = Dispositivo(code=code, name=name, category=category,
                     details=details, image=image)
         lista = form.maquinas.data
-        print(f"\n\nMáquinas: {lista}\n\n")
         for v in lista:
             maquina = Maquina.query.get(v)
-            print(f"\n\nMáquinas: {maquina}\n\n")
         
             dispositivo.maquinas.append(maquina)
 
@@ -199,12 +223,14 @@ def edit(type, id):
 
     elif type == "dispositivo":
         dispositivo = Dispositivo.query.get(id)
+        print(dispositivo.image)
         form = CadastroDispositivo(
             code=dispositivo.code,
             name=dispositivo.name,
             category=dispositivo.category,
             image=dispositivo.image,
             details=dispositivo.details,
+            maquinas=dispositivo.maquinas
         )
         if form.validate_on_submit():
             dispositivo.code = form.code.data
@@ -212,6 +238,7 @@ def edit(type, id):
             dispositivo.category = form.category.data
             dispositivo.image = form.image.data
             dispositivo.details = form.detail.data
+            dispositivo.maquinas = form.maquinas.data
 
             db.session.commit()
             return redirect(url_for(f'admin.{type}s'))
