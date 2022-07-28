@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+	{{ maquina.name }} - TMS
+{% endblock %}
+
+{% block content %}
+	{% with msgs =  get_flashed_messages(with_categories=True) %}
+	{% for c, msg in msgs %}
+		{% if c == 'error' %}
+			<div class="flash-error">
+		{% else %}
+			<div class="success">
+		{% endif %}
+			{{ msg | safe}}</div><br>
+	{% endfor %}
+	{% endwith %}
+
+			<div class="card">
+				<div class="img-wrapper">
+					<img src="{{ maquina.image }}" class="pic">
+				</div>
+				<b>{{ maquina.name }}</b>
+				<span class="right-item">{{ maquina.code }}</span><br>                
+                <div class="details">{{ maquina.details | safe }}</div>                
+				</a>
+			</div>
+			<div class="container text-center">
+				<h3>Dispositivos</h3><br>
+				{% for dispositivo in maquina.dispositivos %}
+					<div class="item">
+						<h3>{{ dispositivo.code }}</h3>
+						<h3>{{ dispositivo.name }}</h3>
+					</div>
+				{% endfor %}
+			</div>
+
+{% endblock %}
+
+

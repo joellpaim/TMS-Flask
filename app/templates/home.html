@@ -35,7 +35,7 @@
 								  <h5 class="card-title">95{{ maquina.code }}</h5>
 								  <h6 class="card-text">{{ maquina.name }}</h6>
 								  <p class="card-text">{{ maquina.details }}</p>
-								  <a href="#" class="btn btn-detalhe">Ver detalhes</a>
+								  <a href="{{ url_for('maquina', id=maquina.id) }}" class="btn btn-detalhe">Ver detalhes</a>
 								  <a href="#" class="btn btn-disp">Dispositivos</a>
 								  <a href="#" class="btn btn-ferr">Ferramentas</a>
 								</div>

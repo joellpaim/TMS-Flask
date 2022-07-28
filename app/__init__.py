@@ -104,6 +104,11 @@ def item(id):
 	item = Item.query.get(id)
 	return render_template('item.html', item=item)
 
+@app.route('/maquina/<int:id>')
+def maquina(id):
+	maquina = Maquina.query.get(id)
+	return render_template('maquina.html', maquina=maquina)
+
 @app.route('/search')
 def search():
 	query = request.args['query']

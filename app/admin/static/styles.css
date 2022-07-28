@@ -1,21 +1,5 @@
-.main {
-	padding: 10vh 0;
-}
-
-table {
-	margin: 0 auto;
-}
-table th {
-	color: white;
-	background-color: #343a40;
-	padding: 15px;
-}
-table tr {
-	border-bottom:1px solid #0046C2;
-}
-
-table td, th {
-padding:5px 30px;
+body {
+	max-width: 100%;
 }
 
 .flash-error, .help-block, .success {
@@ -32,13 +16,35 @@ padding:5px 30px;
 	color:green;
 }
 
-.add-new {
-	margin-left:65vw;
-	margin-bottom:20px;
-}
 .fixarRodape {
 	bottom: 0;
 	position: fixed;
 	width: 100%;
 	text-align: center;
+}
+.forms {
+	margin: 25px;
+	background-color: #343a40;
+	border-radius: 10px;
+	padding: 25px;
+	color: aliceblue;
+	min-height: 450px;
+}
+.col {
+	width: 490px;
+}
+
+.col img {
+	margin-left: 50px;
+	min-height: 450px;
+	max-height: 451px;
+	transition: 300ms;
+	border-radius: 10px;
+}
+.col img:hover {
+	transform: scale(1.1);
+}
+.wrapper {
+	max-width: 100%;
+	overflow-x: auto;
 }

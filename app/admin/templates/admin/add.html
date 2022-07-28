@@ -15,9 +15,29 @@
 			{{ msg }}</div><br>
 	{% endfor %}
 	{% endwith %}
-
-    <div class="forms">
-		{{ wtf.quick_form(form) }}
+	
+	<div class="row">
+		<div class="forms col">
+			{{ wtf.quick_form(form) }}			
+		</div>
+		<div class="col">
+			<img id="preview" src="" alt="">
+		</div>
 	</div>
+	
+    
+	<script>
+		function readImage() {
+		if (this.files && this.files[0]) {
+			var file = new FileReader();
+			file.onload = function(e) {
+				document.getElementById("preview").src = e.target.result;
+			};       
+			file.readAsDataURL(this.files[0]);
+		}
+	}
+	
+	document.getElementById("img-input").addEventListener("change", readImage, false);
+	</script>
     
 {% endblock %}

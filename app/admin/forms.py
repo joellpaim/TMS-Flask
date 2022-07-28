@@ -1,4 +1,5 @@
 from email.mime import image
+from pydoc import classname
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, FloatField, FileField, PasswordField, BooleanField, SelectField, SelectMultipleField
 from wtforms_alchemy.fields import QuerySelectField
@@ -9,7 +10,7 @@ class AddItemForm(FlaskForm):
 	name = StringField("Nome:", validators=[DataRequired(), Length(max=50)])
 	price = FloatField("Preço:", validators=[DataRequired()])
 	category = StringField("Categoria:", validators=[DataRequired(), Length(max=50)])
-	image = FileField("Imagem:", validators=[DataRequired()])
+	image = FileField("Imagem:", validators=[DataRequired()], id="img-input")
 	details = StringField("Detalhes:", validators=[DataRequired()])
 	price_id = StringField("Stripe id:", validators=[DataRequired()])
 	submit = SubmitField("Adicionar")
@@ -25,14 +26,14 @@ class AdminRegisterForm(FlaskForm):
 
 class CadastroCategoria(FlaskForm):
 	name = StringField("Nome:", validators=[DataRequired(), Length(max=50)])	
-	image = FileField("Imagem:", validators=[DataRequired()])
+	image = FileField("Imagem:", validators=[DataRequired()], id="img-input")
 	details = StringField("Detalhes:", validators=[DataRequired()])
 	submit = SubmitField("Adicionar")
 
 class CadastroMaquina(FlaskForm):
 	code = StringField("Código:", validators=[DataRequired(), Length(max=100)])
 	name = StringField("Nome:", validators=[DataRequired(), Length(max=50)])
-	image = FileField("Imagem:", validators=[DataRequired()])
+	image = FileField("Imagem:", validators=[DataRequired()], id="img-input")
 	details = StringField("Detalhes:", validators=[DataRequired()])
 	submit = SubmitField("Adicionar")
 
@@ -40,22 +41,20 @@ class CadastroDispositivo(FlaskForm):
 	code = StringField("Código:", validators=[DataRequired(), Length(max=100)])
 	name = StringField("Nome:", validators=[DataRequired(), Length(max=50)])
 	category = StringField("Categoria:", validators=[DataRequired(), Length(max=50)])
-	image = FileField("Imagem:", validators=[DataRequired()])
+	image = FileField("Imagem:", validators=[DataRequired()], id="img-input")
 	details = StringField("Detalhes:", validators=[DataRequired()])
-	maquinas = SelectMultipleField("Máquinas", coerce=int)	
+	maquinas = SelectMultipleField("Máquina", coerce=int)	
 	submit = SubmitField("Adicionar")
 
 	def __init__(self, *args, **kwargs):
 			super().__init__(*args, **kwargs)
-			self.maquinas.choices = [ 
-            (maquinas.id, maquinas.code) for maquinas in Maquina.query.all()
-        ]
+			self.maquinas.choices = [(maquinas.id, maquinas.code) for maquinas in Maquina.query.all()]
 
 class CadastroFerramenta(FlaskForm):
 	code = StringField("Código:", validators=[DataRequired(), Length(max=100)])
 	name = StringField("Nome:", validators=[DataRequired(), Length(max=50)])
 	category = StringField("Categoria:", validators=[DataRequired(), Length(max=50)])
-	image = FileField("Imagem:", validators=[DataRequired()])
+	image = FileField("Imagem:", validators=[DataRequired()], id="img-input")
 	details = StringField("Detalhes:", validators=[DataRequired()])
 	submit = SubmitField("Adicionar")
 
@@ -63,6 +62,6 @@ class CadastroInserto(FlaskForm):
 	code = StringField("Código:", validators=[DataRequired(), Length(max=100)])
 	name = StringField("Nome:", validators=[DataRequired(), Length(max=50)])
 	category = StringField("Categoria:", validators=[DataRequired(), Length(max=50)])
-	image = FileField("Imagem:", validators=[DataRequired()])
+	image = FileField("Imagem:", validators=[DataRequired()], id="img-input")
 	details = StringField("Detalhes:", validators=[DataRequired()])
 	submit = SubmitField("Adicionar")
