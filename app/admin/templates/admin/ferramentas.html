@@ -19,7 +19,7 @@
     {% if not ferramentas %}
 		<div class="dp-flex">
 		<div class="add-new btn-success btn">
-			<a href="{{ url_for('admin.addferramenta') }}" class="text-light">Adicionar ferramenta</a>
+			<a href="{{ url_for('admin.add_ferramenta') }}" class="text-light">Adicionar ferramenta</a>
 		</div>
 		<div class="add-new btn-success btn">
 			<a href="{{ url_for('admin.cleartable',type='ferramentas') }}" class="text-light">Limpar tabela</a>
@@ -28,7 +28,7 @@
 		<div class="flash-error">Não há ferramentas cadastradas.</div>
 	{% else %}
     <div class="add-new btn-success btn">
-        <a href="{{ url_for('admin.addferramenta') }}" class="text-light">Adicionar ferramenta</a>
+        <a href="{{ url_for('admin.add_ferramenta') }}" class="text-light">Adicionar ferramenta</a>
     </div>
 	<div class="table-responsive">
     <table class="table table-striped">

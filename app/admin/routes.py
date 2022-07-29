@@ -1,3 +1,4 @@
+from email.mime import image
 from flask import Blueprint, render_template, url_for, flash
 from werkzeug.utils import redirect
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -23,6 +24,12 @@ def dashboard():
 def items():
     items = Item.query.all()
     return render_template("admin/items.html", items=items)
+
+@admin.route('/categorias')
+@admin_only
+def categorias():
+    categorias = Categoria.query.all()
+    return render_template("admin/categorias.html", categorias=categorias)
 
 @admin.route('/maquinas')
 @admin_only
@@ -78,6 +85,33 @@ def add():
         return redirect(url_for('admin.items'))
     return render_template("admin/add.html", form=form)
 
+@admin.route('/add_categoria', methods=['POST', 'GET'])
+@admin_only
+def add_categoria():
+    form = CadastroCategoria()
+
+    if form.validate_on_submit():
+        name = form.name.data
+        details = form.details.data
+        form.image.data.save('app/static/uploads/' + form.image.data.filename)
+        image = url_for(
+            'static', filename=f'uploads/{form.image.data.filename}')
+        
+        categoria = Categoria(name=name, details=details, image=image)
+
+        lista = form.maquinas.data
+        for v in lista:
+            maquina = Maquina.query.get(v)
+        
+            categoria.maquinas.append(maquina)
+            
+            db.session.add(categoria)
+            db.session.commit() 
+        
+        flash(f'{name} adicionado com sucesso!', 'success')
+        return redirect(url_for('admin.categorias'))
+    return render_template("admin/add.html", form=form)
+
 @admin.route('/addmaq', methods=['POST', 'GET'])
 @admin_only
 def addmaq():
@@ -92,35 +126,14 @@ def addmaq():
         image = url_for(
             'static', filename=f'uploads/{form.image.data.filename}')
         
-        maquina = Maquina(code=code, name=name, category_id=category_id,
+        if category_id:
+            maquina = Maquina(code=code, name=name, category_id=category_id,
                     details=details, image=image)
-        
-        lista = form.dispositivos.data
-        for v in lista:
-            dispositivo = Dispositivo.query.get(v)
-        
-            maquina.dispositivos.append(dispositivo)
-            
-            db.session.add(maquina)
-            db.session.commit()  
+        else:
+            maquina = Maquina(code=code, name=name, details=details, image=image)
 
-        lista = form.items.data
-        for v in lista:
-            item = Item.query.get(v)
-        
-            maquina.itens.append(item)
-            
-            db.session.add(maquina)
-            db.session.commit() 
-
-        lista = form.ferramentas.data
-        for v in lista:
-            ferramenta = Ferramenta.query.get(v)
-        
-            maquina.ferramentas.append(ferramenta)
-            
-            db.session.add(maquina)
-            db.session.commit() 
+        db.session.add(maquina)
+        db.session.commit()            
 
         flash(f'{name} adicionado com sucesso!', 'success')
         return redirect(url_for('admin.maquinas'))
@@ -136,7 +149,6 @@ def add_dispositivo():
         name = form.name.data        
         category = form.category.data
         details = form.details.data
-        #maquinas = form.maquinas.data
         form.image.data.save('app/static/uploads/' + form.image.data.filename)
         image = url_for(
             'static', filename=f'uploads/{form.image.data.filename}')
@@ -145,17 +157,58 @@ def add_dispositivo():
         dispositivo = Dispositivo(code=code, name=name, category=category,
                     details=details, image=image)
         lista = form.maquinas.data
-        for v in lista:
-            maquina = Maquina.query.get(v)
-        
-            dispositivo.maquinas.append(maquina)
-
+        if lista:
+            for v in lista:
+                maquina = Maquina.query.get(v)
             
+                dispositivo.maquinas.append(maquina)
+                
+                db.session.add(dispositivo)
+                db.session.commit()  
+        else:
             db.session.add(dispositivo)
-            db.session.commit()        
+            db.session.commit() 
 
         flash(f'{name} adicionado com sucesso!', 'success')
         return redirect(url_for('admin.dispositivos'))
+    return render_template("admin/add.html", form=form)
+
+@admin.route('/add_ferramenta', methods=['POST', 'GET'])
+@admin_only
+def add_ferramenta():
+    form = CadastroFerramenta()
+
+    if form.validate_on_submit():
+        code = form.code.data
+        name = form.name.data 
+        price = form.price.data       
+        category = form.category.data
+        details = form.details.data
+        form.image.data.save('app/static/uploads/' + form.image.data.filename)
+        image = url_for(
+            'static', filename=f'uploads/{form.image.data.filename}')
+        
+        
+        ferramenta = Ferramenta(code=code, name=name, price=price, category=category,
+                    details=details, image=image)
+
+        lista = form.insertos.data
+
+        if lista:
+            for v in lista:
+                inserto = Inserto.query.get(v)
+            
+                ferramenta.insertos.append(inserto)
+                
+                db.session.add(ferramenta)
+                db.session.commit()
+        else:
+            db.session.add(ferramenta)
+            db.session.commit()
+         
+
+        flash(f'{name} adicionado com sucesso!', 'success')
+        return redirect(url_for('admin.ferramentas'))
     return render_template("admin/add.html", form=form)
 
 
@@ -204,19 +257,42 @@ def edit(type, id):
             db.session.commit()
             return redirect(url_for(f'admin.{type}s'))
 
+    elif type == "categoria":
+        categoria = Categoria.query.get(id)
+        
+        form = CadastroCategoria(            
+            name=categoria.name,
+            image=categoria.image,
+            details=categoria.details,
+            maquinas=categoria.maquinas
+        )
+                
+        if form.validate_on_submit():
+            categoria.name = form.name.data
+            categoria.image = form.image.data
+            categoria.details = form.details.data
+            categoria.maquinas = form.maquinas.data
+
+            db.session.commit()
+            return redirect(url_for(f'admin.{type}s'))
+
     elif type == "maquina":
         maquina = Maquina.query.get(id)
+        
         form = CadastroMaquina(
             code=maquina.code,
             name=maquina.name,
             image=maquina.image,
             details=maquina.details,
+            category_id=maquina.category_id
         )
+                
         if form.validate_on_submit():
             maquina.code = form.code.data
             maquina.name = form.name.data
             maquina.image = form.image.data
             maquina.details = form.details.data
+            maquina.category_id = form.category_id.data
 
             db.session.commit()
             return redirect(url_for(f'admin.{type}s'))
