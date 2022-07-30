@@ -5,7 +5,7 @@ from flask_bootstrap import Bootstrap
 from .forms import LoginForm, RegisterForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, current_user, login_required, logout_user
-from .db_models import Maquina, db, User, Item
+from .db_models import Maquina, db, User, Item, Dispositivo, Ferramenta, Inserto
 from itsdangerous import URLSafeTimedSerializer
 from dotenv import load_dotenv
 from .admin.routes import admin, maquinas
@@ -109,9 +109,24 @@ def maquina(id):
 	maquina = Maquina.query.get(id)
 	return render_template('maquina.html', maquina=maquina)
 
+@app.route('/dispositivo/<int:id>')
+def dispositivo(id):
+	dispositivo = Dispositivo.query.get(id)
+	return render_template('dispositivo.html', dispositivo=dispositivo)
+
+@app.route('/ferramenta/<int:id>')
+def ferramenta(id):
+	ferramenta = Ferramenta.query.get(id)
+	return render_template('ferramenta.html', ferramenta=ferramenta)
+
+@app.route('/inserto/<int:id>')
+def inserto(id):
+	inserto = Inserto.query.get(id)
+	return render_template('inserto.html', inserto=inserto)
+
 @app.route('/search')
 def search():
 	query = request.args['query']
 	search = "%{}%".format(query)
-	items = Item.query.filter(Item.name.like(search)).all()
-	return render_template('home.html', items=items, search=True, query=query)
+	maquinas = Maquina.query.filter(Maquina.code.like(search)).all()
+	return render_template('home.html', maquinas=maquinas, search=True, query=query)

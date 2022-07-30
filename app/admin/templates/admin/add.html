@@ -20,9 +20,13 @@
 		<div class="forms col">
 			{{ wtf.quick_form(form, enctype="multipart/form-data") }}			
 		</div>
+		{% if form.image.data %}
 		<div class="col">
 			<img id="preview" src="{{ form.image.data }}" alt="">
 		</div>
+		{% else %}
+		
+		{% endif %}
 	</div>
 	
     

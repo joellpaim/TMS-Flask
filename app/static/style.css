@@ -224,3 +224,7 @@ h2::after {
 	padding: 25px;
 	color: aliceblue;
 }
+.btn-busca {
+	background-color: #73d580;
+	color: white;
+}

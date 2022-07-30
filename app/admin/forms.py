@@ -6,13 +6,18 @@ from wtforms.validators import DataRequired, Email, Length, EqualTo, Regexp
 from app.db_models import Categoria, Item, Maquina, Dispositivo, Ferramenta,Inserto
 
 class AddItemForm(FlaskForm):
+	code = StringField("Código:", validators=[DataRequired()])
 	name = StringField("Nome:", validators=[DataRequired(), Length(max=50)])
-	price = FloatField("Preço:", validators=[DataRequired()])
+	image = ("Sem imagem")
 	category = StringField("Categoria:", validators=[DataRequired(), Length(max=50)])
-	image = FileField("Imagem:", validators=[DataRequired()], id="img-input")
 	details = StringField("Detalhes:", validators=[DataRequired()])
-	price_id = StringField("Stripe id:", validators=[DataRequired()])
-	submit = SubmitField("Adicionar")
+	ferramentas = SelectMultipleField("Ferramentas:", coerce=int)
+	submit = SubmitField("Salvar")
+
+	def __init__(self, *args, **kwargs):
+			super().__init__(*args, **kwargs)
+			self.ferramentas.choices = [(ferramentas.id, ferramentas.code) for ferramentas in Ferramenta.query.all()]
+
 
 class AdminRegisterForm(FlaskForm):
 	name = StringField("Nome:", validators=[DataRequired(), Length(max=50)])
@@ -27,7 +32,7 @@ class CadastroCategoria(FlaskForm):
 	name = StringField("Nome:", validators=[DataRequired(), Length(max=50)])	
 	image = FileField("Imagem:", id="img-input")
 	details = StringField("Detalhes:", validators=[DataRequired()])
-	maquinas = SelectMultipleField("Maquinas", coerce=int)
+	maquinas = SelectMultipleField("Maquinas:", coerce=int)
 	submit = SubmitField("Salvar")
 
 	def __init__(self, *args, **kwargs):
@@ -56,7 +61,7 @@ class CadastroDispositivo(FlaskForm):
 	code = StringField("Código:", validators=[DataRequired(), Length(max=100)])
 	name = StringField("Nome:", validators=[DataRequired(), Length(max=50)])
 	category = StringField("Categoria:", validators=[DataRequired(), Length(max=50)])
-	image = FileField("Imagem:", validators=[DataRequired()], id="img-input")
+	image = FileField("Imagem:", id="img-input")
 	details = StringField("Detalhes:", validators=[DataRequired()])
 	maquinas = SelectMultipleField("Máquinas", coerce=int)	
 	submit = SubmitField("Salvar")
@@ -84,6 +89,6 @@ class CadastroInserto(FlaskForm):
 	code = StringField("Código:", validators=[DataRequired(), Length(max=100)])
 	name = StringField("Nome:", validators=[DataRequired(), Length(max=50)])
 	category = StringField("Categoria:", validators=[DataRequired(), Length(max=50)])
-	image = FileField("Imagem:", validators=[DataRequired()], id="img-input")
+	image = FileField("Imagem:", id="img-input")
 	details = StringField("Detalhes:", validators=[DataRequired()])
 	submit = SubmitField("Salvar")

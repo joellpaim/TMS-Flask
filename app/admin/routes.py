@@ -69,16 +69,13 @@ def add():
     form = AddItemForm()
 
     if form.validate_on_submit():
-        name = form.name.data
-        price = form.price.data
+        code = form.code.data
+        name = form.name.data        
         category = form.category.data
         details = form.details.data
-        form.image.data.save('app/static/uploads/' + form.image.data.filename)
-        image = url_for(
-            'static', filename=f'uploads/{form.image.data.filename}')
-        price_id = form.price_id.data
-        item = Item(name=name, price=price, category=category,
-                    details=details, image=image, price_id=price_id)
+        image = ("Sem imagem")
+        item = Item(code=code, name=name, category=category,
+                    details=details, image=image)
         db.session.add(item)
         db.session.commit()
         flash(f'{name} adicionado com sucesso!', 'success')
@@ -93,9 +90,9 @@ def add_categoria():
     if form.validate_on_submit():
         name = form.name.data
         details = form.details.data
-        form.image.data.save('app/static/uploads/' + form.image.data.filename)
+        form.image.data.save('app/static/uploads/categorias/' + form.image.data.filename)
         image = url_for(
-            'static', filename=f'uploads/{form.image.data.filename}')
+            'static', filename=f'uploads/categorias/{form.image.data.filename}')
         
         categoria = Categoria(name=name, details=details, image=image)
 
@@ -122,9 +119,9 @@ def addmaq():
         name = form.name.data        
         category_id = form.category_id.data
         details = form.details.data
-        form.image.data.save('app/static/uploads/' + form.image.data.filename)
+        form.image.data.save('app/static/uploads/maquinas/' + form.image.data.filename)
         image = url_for(
-            'static', filename=f'uploads/{form.image.data.filename}')
+            'static', filename=f'uploads/maquinas/{form.image.data.filename}')
         
         if category_id:
             maquina = Maquina(code=code, name=name, category_id=category_id,
@@ -132,9 +129,23 @@ def addmaq():
         else:
             maquina = Maquina(code=code, name=name, details=details, image=image)
 
-        db.session.add(maquina)
-        db.session.commit()            
+        lista_itens = form.items.data
+        if lista_itens:
+            for v in lista_itens:
+                item = Item.query.get(v)
+            
+                maquina.items.append(item)
+                
+                db.session.add(maquina)  
+                db.session.commit()              
+        else:
+            db.session.add(maquina)
+            db.session.commit()
+        
+        
+         
 
+        
         flash(f'{name} adicionado com sucesso!', 'success')
         return redirect(url_for('admin.maquinas'))
     return render_template("admin/add.html", form=form)
@@ -149,9 +160,9 @@ def add_dispositivo():
         name = form.name.data        
         category = form.category.data
         details = form.details.data
-        form.image.data.save('app/static/uploads/' + form.image.data.filename)
+        form.image.data.save('app/static/uploads/dispositivos/' + form.image.data.filename)
         image = url_for(
-            'static', filename=f'uploads/{form.image.data.filename}')
+            'static', filename=f'uploads/dispositivos/{form.image.data.filename}')
         
         
         dispositivo = Dispositivo(code=code, name=name, category=category,
@@ -184,9 +195,9 @@ def add_ferramenta():
         price = form.price.data       
         category = form.category.data
         details = form.details.data
-        form.image.data.save('app/static/uploads/' + form.image.data.filename)
+        form.image.data.save('app/static/uploads/ferramentas/' + form.image.data.filename)
         image = url_for(
-            'static', filename=f'uploads/{form.image.data.filename}')
+            'static', filename=f'uploads/ferramentas/{form.image.data.filename}')
         
         
         ferramenta = Ferramenta(code=code, name=name, price=price, category=category,
@@ -231,10 +242,10 @@ def edit(type, id):
             item.category = form.category.data
             item.details = form.details.data
             item.price_id = form.price_id.data
-            form.image.data.save('app/static/uploads/' +
+            form.image.data.save('app/static/uploads/itens/' +
                                  form.image.data.filename)
             item.image = url_for(
-                'static', filename=f'uploads/{form.image.data.filename}')
+                'static', filename=f'uploads/itens/{form.image.data.filename}')
             db.session.commit()
             return redirect(url_for(f'admin.{type}s'))
     

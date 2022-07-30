@@ -29,18 +29,18 @@
     <table class="table table-striped">
         <tr>
             <th>Item id</th>
-            <th>Nome</th>
-			<th>Preço</th>
+			<th>Código</th>
+            <th>Nome</th>			
 			<th>Categoria</th>
-			<th>Img Link</th>
+			<th>Desenho</th>
             <th>Detalhes</th>
             <th>Operações</th>
         </tr>
     {% for item in items %}
         <tr>
             <td>{{ item.id }}</td>
-            <td>{{ item.name }}</td>
-			<td>{{ item.price }}</td>
+            <td>{{ item.code }}</td>
+			<td>{{ item.name }}</td>
 			<td>{{ item.category }}</td>
 			<td>{{ item.image[:15] }}...</td>
             <td>{{ item.details[:40] | safe }}...</td>
