@@ -127,25 +127,21 @@ def addmaq():
             maquina = Maquina(code=code, name=name, category_id=category_id,
                     details=details, image=image)
         else:
-            maquina = Maquina(code=code, name=name, details=details, image=image)
+            maquina = Maquina(code=code, name=name, details=details, image=image)        
+        
+        
+        for id in form.dispositivos.data:
+                maquina.dispositivos.append(Dispositivo.query.get(id))
 
-        lista_itens = form.items.data
-        if lista_itens:
-            for v in lista_itens:
-                item = Item.query.get(v)
-            
-                maquina.items.append(item)
-                
-                db.session.add(maquina)  
-                db.session.commit()              
-        else:
-            db.session.add(maquina)
-            db.session.commit()
-        
-        
-         
+        for id in form.items.data:
+            maquina.itens.append(Item.query.get(id))
 
-        
+        for id in form.ferramentas.data:
+            maquina.ferramentas.append(Ferramenta.query.get(id))
+
+        db.session.add(maquina)
+        db.session.commit()
+
         flash(f'{name} adicionado com sucesso!', 'success')
         return redirect(url_for('admin.maquinas'))
     return render_template("admin/add.html", form=form)
@@ -229,19 +225,19 @@ def edit(type, id):
     if type == "item":
         item = Item.query.get(id)
         form = AddItemForm(
+            code=item.code,
             name=item.name,
-            price=item.price,
             category=item.category,
             details=item.details,
             image=item.image,
-            price_id=item.price_id,
+            ferramentas=item.ferramentas,
         )
         if form.validate_on_submit():
             item.name = form.name.data
             item.price = form.price.data
             item.category = form.category.data
             item.details = form.details.data
-            item.price_id = form.price_id.data
+            item.ferramentas = form.ferramentas.data
             form.image.data.save('app/static/uploads/itens/' +
                                  form.image.data.filename)
             item.image = url_for(
@@ -295,7 +291,10 @@ def edit(type, id):
             name=maquina.name,
             image=maquina.image,
             details=maquina.details,
-            category_id=maquina.category_id
+            category_id=maquina.category_id,
+            dispositivos=maquina.dispositivos,
+            items=maquina.itens,
+            ferramentas=maquina.ferramentas
         )
                 
         if form.validate_on_submit():
@@ -305,7 +304,17 @@ def edit(type, id):
             maquina.details = form.details.data
             maquina.category_id = form.category_id.data
 
+            for id in form.dispositivos.data:
+                maquina.dispositivos.append(Dispositivo.query.get(id))
+
+            for id in form.items.data:
+                maquina.itens.append(Item.query.get(id))
+
+            for id in form.ferramentas.data:
+                maquina.ferramentas.append(Ferramenta.query.get(id))
+
             db.session.commit()
+            flash(f'{maquina.code} alterado com sucesso!', 'success')
             return redirect(url_for(f'admin.{type}s'))
 
     elif type == "dispositivo":
