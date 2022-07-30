@@ -228,3 +228,43 @@ h2::after {
 	background-color: #73d580;
 	color: white;
 }
+.card-maquina {
+	background-color: white;
+	box-shadow: -5px 5px #73d580;
+	border-radius: 10px;
+	max-width: 18rem;
+}
+.card-maquina:hover {
+	box-shadow: -5px 5px #73c6d5;
+}
+.sec {
+	height: 100vh;
+}
+.pesquisa {
+	transition: 300ms;
+  	width: 50%
+}
+.pesquisa:hover {	
+	width: 120%;
+}
+.painel {
+	background-color: #747d89;
+	color: white;
+	border-radius: 10px;
+	margin: 15px;
+}
+.topo {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    height: 64px;
+    width: 64px;
+    border-radius: 50%;
+    background: #73d580;
+    font-size: 52px;
+    color: #ffffff;
+    text-align: center;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 10;
+}

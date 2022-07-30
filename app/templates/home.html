@@ -52,15 +52,12 @@
 					<div class="row">
 						{% for maquina in maquinas %}
 						<div class="col-sm-3 mb-3">
-							<div class="card" style="width: 18rem;">
+							<div class="card card-maquina" style="width: 18rem;">
 								<img src="{{ maquina.image }}" class="card-img-top" alt="{{ maquina.name }}">
 								<div class="card-body">
 								  <h5 class="card-title">{{ maquina.code }}</h5>
 								  <h6 class="card-text">{{ maquina.name }}</h6>
-								  <p class="card-text">{{ maquina.details }}</p>
 								  <a href="{{ url_for('maquina', id=maquina.id) }}" class="btn btn-detalhe">Ver detalhes</a>
-								  <a href="#" class="btn btn-disp">Dispositivos</a>
-								  <a href="#" class="btn btn-ferr">Ferramentas</a>
 								</div>
 							  </div>
 						</div>	
