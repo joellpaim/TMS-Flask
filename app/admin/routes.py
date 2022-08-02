@@ -16,7 +16,10 @@ admin = Blueprint("admin", __name__, url_prefix="/admin",
 @admin.route('/')
 @admin_only
 def dashboard():
-    return render_template("admin/home.html")
+    maquinas = Maquina.query.all()
+    items = Item.query.all()
+    ferramentas = Ferramenta.query.all()
+    return render_template("admin/dashboard.html", maquinas=maquinas)
 
 
 @admin.route('/items')

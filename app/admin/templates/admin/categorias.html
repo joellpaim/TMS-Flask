@@ -17,44 +17,54 @@
 	{% endwith %}
 
     {% if not categorias %}
-		<div class="dp-flex">
-		<div class="add-new btn-success btn">
-			<a href="{{ url_for('admin.add_categoria') }}" class="text-light">Adicionar categoria</a>
+		<div class="container mg-3 p-3">
+
+			<a href="{{ url_for('admin.add_categoria') }}" class="btn btn-success">
+				<i class="fas fa-plus fa-fw"></i>
+				Cadastrar categoria
+			</a>
+			<a href="{{ url_for('admin.cleartable',type='categorias') }}" class="btn btn-danger">
+				<i class="fas fa-trash fa-fw"></i>
+				Limpar tabela
+			</a>
+
 		</div>
-		<div class="add-new btn-success btn">
-			<a href="{{ url_for('admin.cleartable',type='categorias') }}" class="text-light">Limpar tabela</a>
-		</div>
-		</div>
+		
 		<div class="flash-error">Não há categorias cadastrados.</div>
 	{% else %}
-    <div class="add-new btn-success btn">
-        <a href="{{ url_for('admin.add_categoria') }}" class="text-light">Adicionar categoria</a>
-    </div>
-	<div class="add-new btn-success btn">
-		<a href="{{ url_for('admin.cleartable',type='categorias') }}" class="text-light">Limpar tabela</a>
-	</div>
-	<div class="table-responsive">
-    <table class="table table-striped">
-        <tr>
-            <th>Item id</th>
-            <th>Nome</th>
-			<th>Img Link</th>
-            <th>Detalhes</th>
-            <th>Operações</th>
-        </tr>
+    <div class="container mg-3 p-3">
+		<h4 class="text-center p-3">Tabela Categorias</h4>
+		<a href="{{ url_for('admin.add_categoria') }}" class="btn btn-success">
+			<i class="fas fa-plus fa-fw"></i>
+			Cadastrar categoria
+		</a>
+		<a href="{{ url_for('admin.cleartable',type='categorias') }}" class="btn btn-danger">
+			<i class="fas fa-trash fa-fw"></i>
+			Limpar tabela
+		</a>
+
+	
+		<div class="mt-3">	
+			<table class="table table-striped tabela-responsiva">
+				<tr>
+					<th>Item id</th>
+					<th>Nome</th>
+					<th>Detalhes</th>
+					<th>Operações</th>
+				</tr>
     {% for categoria in categorias %}
-        <tr>
-            <td>{{ categoria.id }}</td>
-            <td>{{ categoria.name }}</td>
-			<td>{{ categoria.image[:15] }}...</td>
-            <td>{{ categoria.details[:40] | safe }}...</td>
-			<td>
-                <a href="{{ url_for('admin.edit', type='categoria', id=categoria.id) }}">&#9998;</a>
-				<a href="{{ url_for('admin.delete', type='categoria', id=categoria.id) }}">&#10060;</a>
-			</td>
-        </tr>
+				<tr>
+					<td>{{ categoria.id }}</td>
+					<td>{{ categoria.name }}</td>
+					<td>{{ categoria.details[:40] | safe }}...</td>
+					<td>
+						<a class="btn btn-info" href="{{ url_for('admin.edit', type='categoria', id=categoria.id) }}">&#9998;</a>
+						<a class="btn btn-danger" href="{{ url_for('admin.delete', type='categoria', id=categoria.id) }}">&#10060;</a>
+					</td>
+				</tr>
     {% endfor %}
-    </table>
+    		</table>
+		</div>
 	</div>
 
 	{% endif %}

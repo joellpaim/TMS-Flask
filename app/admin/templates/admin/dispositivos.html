@@ -17,44 +17,55 @@
 	{% endwith %}
 
     {% if not dispositivos %}
-		<div class="dp-flex">
-		<div class="add-new btn-success btn">
-			<a href="{{ url_for('admin.add_dispositivo') }}" class="text-light">Adicionar dispositivo</a>
-		</div>
-		<div class="add-new btn-success btn">
-			<a href="{{ url_for('admin.cleartable',type='dispositivos') }}" class="text-light">Limpar tabela</a>
-		</div>
-		</div>
+		<div class="container mg-3 p-3">
+
+			<a href="{{ url_for('admin.add_dispositivo') }}" class="btn btn-success">
+				<i class="fas fa-plus fa-fw"></i>
+				Cadastrar dispositivo
+			</a>
+			<a href="{{ url_for('admin.cleartable',type='dispositivos') }}" class="btn btn-danger">
+				<i class="fas fa-trash fa-fw"></i>
+				Limpar tabela
+			</a>
+
+		</div>		
 		<div class="flash-error">Não há dispositivos cadastrados.</div>
 	{% else %}
-    <div class="add-new btn-success btn">
-        <a href="{{ url_for('admin.add_dispositivo') }}" class="text-light">Adicionar dispositivo</a>
-    </div>
-	<div class="add-new btn-success btn">
-		<a href="{{ url_for('admin.cleartable',type='dispositivos') }}" class="text-light">Limpar tabela</a>
-	</div>
-	<div class="table-responsive">
-    <table class="table table-striped">
-        <tr>
-            <th>Item id</th>
-            <th>Nome</th>
-			<th>Img Link</th>
-            <th>Detalhes</th>
-            <th>Operações</th>
-        </tr>
+    <div class="container mg-3 p-3">
+		<h4 class="text-center p-3">Tabela Dispositivos</h4>
+		<a href="{{ url_for('admin.add_dispositivo') }}" class="btn btn-success">
+			<i class="fas fa-plus fa-fw"></i>
+			Cadastrar dispositivo
+		</a>
+		<a href="{{ url_for('admin.cleartable',type='dispositivos') }}" class="btn btn-danger">
+			<i class="fas fa-trash fa-fw"></i>
+			Limpar tabela
+		</a>
+
+	
+		<div class="mt-3">	
+			<table class="table table-striped tabela-responsiva">
+				<tr>
+					<th>Item id</th>
+					<th>Nome</th>
+					<th>Img Link</th>
+					<th>Detalhes</th>
+					<th>Operações</th>
+				</tr>
     {% for dispositivo in dispositivos %}
-        <tr>
-            <td>{{ dispositivo.id }}</td>
-            <td>{{ dispositivo.name }}</td>
-			<td>{{ dispositivo.image[:15] }}...</td>
-            <td>{{ dispositivo.details[:40] | safe }}...</td>
-			<td>
-                <a href="{{ url_for('admin.edit', type='dispositivo', id=dispositivo.id) }}">&#9998;</a>
-				<a href="{{ url_for('admin.delete', type='dispositivo', id=dispositivo.id) }}">&#10060;</a>
-			</td>
-        </tr>
+				<tr>
+					<td>{{ dispositivo.id }}</td>
+					<td>{{ dispositivo.name }}</td>
+					<td>{{ dispositivo.image[:15] }}...</td>
+					<td>{{ dispositivo.details[:40] | safe }}...</td>
+					<td>
+						<a class="btn btn-info" href="{{ url_for('admin.edit', type='dispositivo', id=dispositivo.id) }}">&#9998;</a>
+						<a class="btn btn-danger" href="{{ url_for('admin.delete', type='dispositivo', id=dispositivo.id) }}">&#10060;</a>
+					</td>
+				</tr>
     {% endfor %}
-    </table>
+    		</table>
+		</div>
 	</div>
 
 	{% endif %}

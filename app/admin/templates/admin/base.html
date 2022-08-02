@@ -32,7 +32,7 @@
 
     <!-- tela de loading -->
     <div id="loading" style="display: block;position: absolute;top: 50%;left: 50%;margin-right: -50%;transform: translate(-50%, -50%);">
-      <img src="http://media.giphy.com/media/FwviSlrsfa4aA/giphy.gif" style="width:150px;height:150px;" />
+      <img src="https://www.cfepmembros.com.br/images/gif/loader-blue.gif" style="max-width:100px;max-height:100px;" />
     </div>
 
     <div>
@@ -92,7 +92,7 @@
                 </ul>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="#">
+                  <a class="nav-link" href="{{ url_for('admin.dashboard') }}">
                   <i class='fa fa-chart-line' style='font-size:14px'></i> Dashboard</a>
               </li>
               <li class="nav-item">
@@ -173,7 +173,7 @@
                   </ul>
               </li>
               <li>
-                  <a href="#">
+                  <a href="{{ url_for('admin.dashboard') }}">
                   <i class='fa fa-chart-line' style='font-size:14px'></i> Dashboard</a>
               </li>
               <li>
@@ -204,9 +204,8 @@
         <!-- Page Content -->
         <div id="conteudo" style="display: none">
           <div id="content">
-            <div class="container-fluid">
-              
-                <div class="main">              
+            <div>              
+                <div>              
                   {% block content %}
                   {% endblock %}
                 </div>
