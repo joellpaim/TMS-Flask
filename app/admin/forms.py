@@ -48,7 +48,7 @@ class CadastroMaquina(FlaskForm):
 	dispositivos = SelectMultipleField("Dispositivos", coerce=int)
 	items = SelectMultipleField("Produtos", coerce=int)
 	ferramentas = SelectMultipleField("Ferramentas", coerce=int)
-	submit = SubmitField("Salvar", render_kw={"class": "btn btn-primary mb-2"})
+	submit = SubmitField("Salvar", render_kw={"class": "btn btn-success mb-2"})
 
 	def __init__(self, *args, **kwargs):
 			super().__init__(*args, **kwargs)

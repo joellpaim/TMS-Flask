@@ -17,33 +17,39 @@
 	{% endwith %}
 
     {% if not maquinas %}
-		<div class="dp-flex">
-		<div class="add-new btn-success btn">
-			<a href="{{ url_for('admin.addmaq') }}" class="text-light">Adicionar máquina</a>
-		</div>
-		<div class="add-new btn-success btn">
-			<a href="{{ url_for('admin.cleartable',type='maquinas') }}" class="text-light">Limpar tabela</a>
-		</div>
+		<div class="container mg-3 p-3">
+
+			<a href="{{ url_for('admin.addmaq') }}" class="btn btn-success">
+				<i class="fas fa-plus fa-fw"></i>
+				Cadastrar máquina
+			</a>
+			<a href="{{ url_for('admin.cleartable',type='maquinas') }}" class="btn btn-danger">
+				<i class="fas fa-trash fa-fw"></i>
+				Limpar tabela
+			</a>
+
 		</div>
 		<div class="flash-error">Não há máquinas cadastradas.</div>
 	{% else %}
-	<div class="container">
+	<div class="container mg-3 p-3">
+
+		<h4 class="text-center p-3">Tabela Máquinas</h4>
 		
-			<a href="{{ url_for('admin.addmaq') }}" class="text-light">
-				<input type="button" value="Adicionar máquina">
+			<a href="{{ url_for('admin.addmaq') }}" class="btn btn-success mt-2">
+				<i class="fas fa-plus fa-fw"></i>
+				Cadastrar máquina
 			</a>
-			<a href="{{ url_for('admin.cleartable',type='maquinas') }}" class="text-light">
-				<input type="button" value="Limpar tabela">
+			<a href="{{ url_for('admin.cleartable',type='maquinas') }}" class="btn btn-danger mt-2">
+				<i class="fas fa-trash fa-fw"></i>
+				Limpar tabela
 			</a>				
 		
-		<div class="table tabela-responsiva">	
-			<table>
+		<div class="mt-3">	
+			<table class="table table-striped tabela-responsiva">
 				<tr>
 					<th>Item id</th>
 					<th>Código</th>
 					<th>Nome</th>
-					<th>Img Link</th>
-					<th>Detalhes</th>
 					<th>Operações</th>
 				</tr>
 			{% for maquina in maquinas %}
@@ -51,11 +57,9 @@
 					<td>{{ maquina.id }}</td>
 					<td>{{ maquina.code }}</td>
 					<td>{{ maquina.name }}</td>
-					<td>{{ maquina.image[:15] }}...</td>
-					<td>{{ maquina.details[:40] | safe }}...</td>
 					<td>
-						<a href="{{ url_for('admin.edit', type='maquina', id=maquina.id) }}">&#9998;</a>
-						<a href="{{ url_for('admin.delete', type='maquinas', id=maquina.id) }}">&#10060;</a>
+						<a class="btn btn-info" href="{{ url_for('admin.edit', type='maquina', id=maquina.id) }}">&#9998;</a>
+						<a class="btn btn-danger" href="{{ url_for('admin.delete', type='maquinas', id=maquina.id) }}">&#10060;</a>
 					</td>
 				</tr>
 			{% endfor %}

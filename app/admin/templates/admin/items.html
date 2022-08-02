@@ -17,40 +17,58 @@
 	{% endwith %}
 
     {% if not items %}
-		<div class="add-new btn-success btn">
-			<a href="{{ url_for('admin.add') }}" class="text-light">Adicionar item</a>
-		</div>
-		<div class="flash-error">Não há produtos cadastrados.</div>
+	<div class="container mg-3 p-3">
+        
+		<a href="{{ url_for('admin.add') }}" class="btn btn-success">
+			<i class="fas fa-plus fa-fw"></i>
+			Cadastrar peça
+		</a>
+		<a href="{{ url_for('admin.cleartable',type='items') }}" class="btn btn-danger">
+			<i class="fas fa-trash fa-fw"></i>
+			Limpar tabela
+		</a>	
+	
+	</div>
+	<div class="flash-error">Não há peças cadastradas.</div>
 	{% else %}
-    <div class="add-new btn-success btn">
-        <a href="{{ url_for('admin.add') }}" class="text-light">Adicionar item</a>
-    </div>
-	<div class="table-responsive">
-    <table class="table table-striped">
-        <tr>
-            <th>Item id</th>
-			<th>Código</th>
-            <th>Nome</th>			
-			<th>Categoria</th>
-			<th>Desenho</th>
-            <th>Detalhes</th>
-            <th>Operações</th>
-        </tr>
-    {% for item in items %}
-        <tr>
-            <td>{{ item.id }}</td>
-            <td>{{ item.code }}</td>
-			<td>{{ item.name }}</td>
-			<td>{{ item.category }}</td>
-			<td>{{ item.image[:15] }}...</td>
-            <td>{{ item.details[:40] | safe }}...</td>
-			<td>
-                <a href="{{ url_for('admin.edit', type='item', id=item.id) }}">&#9998;</a>
-				<a href="{{ url_for('admin.delete', type='item', id=item.id) }}">&#10060;</a>
-			</td>
-        </tr>
-    {% endfor %}
-    </table>
+    <div class="container mg-3 p-3">
+        
+		<a href="{{ url_for('admin.add') }}" class="btn btn-success">
+			<i class="fas fa-plus fa-fw"></i>
+			Cadastrar peça
+		</a>
+		<a href="{{ url_for('admin.cleartable',type='items') }}" class="btn btn-danger">
+			<i class="fas fa-trash fa-fw"></i>
+			Limpar tabela
+		</a>	
+
+		<div class="mt-3">
+		<table class="table table-striped tabela-responsiva">
+			<tr>
+				<th>Item id</th>
+				<th>Código</th>
+				<th>Nome</th>			
+				<th>Categoria</th>
+				<th>Desenho</th>
+				<th>Detalhes</th>
+				<th>Operações</th>
+			</tr>
+		{% for item in items %}
+			<tr>
+				<td>{{ item.id }}</td>
+				<td>{{ item.code }}</td>
+				<td>{{ item.name }}</td>
+				<td>{{ item.category }}</td>
+				<td>{{ item.image[:15] }}...</td>
+				<td>{{ item.details[:40] | safe }}...</td>
+				<td>
+					<a href="{{ url_for('admin.edit', type='item', id=item.id) }}">&#9998;</a>
+					<a href="{{ url_for('admin.delete', type='item', id=item.id) }}">&#10060;</a>
+				</td>
+			</tr>
+		{% endfor %}
+		</table>
+		</div>
 	</div>
 
 	{% endif %}

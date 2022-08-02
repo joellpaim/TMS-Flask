@@ -38,15 +38,12 @@
     <div>
       <!-- navbar -->
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{{ url_for('home') }}">TMS<b style="color: #73d580;">.</b></a>
+        <a class="navbar-brand" href="{{ url_for('home') }}"><h3>TMS<b style="color: #73d580;">.</b></h3></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('home') }}">Home</a>
-            </li>
+          <ul class="navbar-nav" id="navmovel">      
 
             {% if not current_user.is_authenticated %}
               <li class="nav-item">
@@ -57,17 +54,70 @@
               </li>
             {% else %}
               <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('admin.adminregister') }}">Cadastro Admin</a>
+                <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"><i class='fa fa-plus' style='font-size:14px'></i>  Cadastros</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu2">
+
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ url_for('admin.adminregister') }}">
+                      <i class='fa fa-user-tie' style='font-size:14px'></i> Administradores</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ url_for('admin.users') }}">
+                      <i class='fa fa-user' style='font-size:14px'></i> Usuários</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('admin.categorias') }}">
+                    <i class='fa fa-box' style='font-size:14px'></i> Categorias</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('admin.maquinas') }}">
+                    <i class='fa fa-box' style='font-size:14px'></i> Máquinas</a>
+                  </li> 
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('admin.items') }}">
+                    <i class='fa fa-box' style='font-size:14px'></i> Produtos</a>
+                  </li>                    
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('admin.dispositivos') }}">
+                    <i class='fa fa-box' style='font-size:14px'></i> Dispositivos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('admin.ferramentas') }}">
+                    <i class='fa fa-box' style='font-size:14px'></i> Ferramentas</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('admin.insertos') }}">
+                    <i class='fa fa-box' style='font-size:14px'></i> Insertos</a>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('admin.users') }}">Usuários</a>
+                  <a class="nav-link" href="#">
+                  <i class='fa fa-chart-line' style='font-size:14px'></i> Dashboard</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('admin.items') }}">Itens</a>
+                  <a class="nav-link" href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class='fa fa-industry' style='font-size:14px'></i> Sobre</a>
+                  <ul class="collapse list-unstyled" id="pageSubmenu2">
+                      <li class="nav-item">
+                          <a class="nav-link" href="#">Empresa</a>
+                      </li>
+                  </ul>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <i class='fa fa-cogs' style='font-size:14px'>
+                  </i> Configurações</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <i class='fa fa-phone' style='font-size:14px'>
+                    </i> Contato</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('logout') }}">Sair</a>
               </li>
+          
             {% endif %}
             
           </ul>
@@ -79,17 +129,17 @@
         <!-- Sidebar -->
         <nav id="sidebar">
           <div class="sidebar-header">
-              <h4><a href="{{ url_for('home') }}"><i class='fa fa-angle-left' style='font-size:24px'></i> Voltar</a> </h4>
+              <h4><a class="btn btn-info d-block" href="{{ url_for('home') }}"><i class='fa fa-angle-left'></i> Voltar ao site</a> </h4>
           </div>
 
           <ul class="list-unstyled components">
               <p>Menu</p>
               <li>
-                  <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class='fa fa-plus' style='font-size:14px'></i>  Tabelas</a>
+                  <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class='fa fa-plus' style='font-size:14px'></i>  Cadastros</a>
                   <ul class="collapse list-unstyled" id="homeSubmenu">
                       <li>
                           <a href="{{ url_for('admin.adminregister') }}">
-                          <i class='fa fa-user-tie' style='font-size:14px'></i> Administrador</a>
+                          <i class='fa fa-user-tie' style='font-size:14px'></i> Administradores</a>
                       </li>
                       <li>
                           <a href="{{ url_for('admin.users') }}">
@@ -97,12 +147,13 @@
                       </li>
                       <li>
                         <a href="{{ url_for('admin.categorias') }}">
-                        <i class='fa fa-box' style='font-size:14px'></i> Categorias de Máquinas</a>
+                        <i class='fa fa-box' style='font-size:14px'></i> Categorias</a>
                       </li>
                       <li>
                         <a href="{{ url_for('admin.maquinas') }}">
                         <i class='fa fa-box' style='font-size:14px'></i> Máquinas</a>
-                      </li>  
+                      </li> 
+      
                       <li>
                         <a href="{{ url_for('admin.items') }}">
                         <i class='fa fa-box' style='font-size:14px'></i> Produtos</a>
@@ -143,6 +194,9 @@
                   <a href="#">
                     <i class='fa fa-phone' style='font-size:14px'>
                     </i> Contato</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('logout') }}"> Sair</a>
               </li>
           </ul>
         </nav>

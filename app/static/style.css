@@ -233,9 +233,13 @@ h2::after {
 	box-shadow: -5px 5px #73d580;
 	border-radius: 10px;
 	max-width: 18rem;
+	transition: 300ms ease-in-out;
 }
 .card-maquina:hover {
 	box-shadow: -5px 5px #73c6d5;
+	transform: scale(1.05);
+	margin-bottom: 15px;
+	margin-top: 15px;
 }
 .sec {
 	height: 100vh;
@@ -248,23 +252,35 @@ h2::after {
 	width: 120%;
 }
 .painel {
-	background-color: #747d89;
+	background-color: #748589;
 	color: white;
 	border-radius: 10px;
 	margin: 15px;
+	padding: 15px;
+}
+.card-image {
+	display: block;
+	max-width: 500px;
+	max-height: 500px;
+	margin: auto;
+	margin-top: 50px;
+	border-radius: 15px;
 }
 .topo {
     position: fixed;
     bottom: 5%;
     right: 5%;
-    height: 64px;
-    width: 64px;
+    height: 70px;
+    width: 70px;
     border-radius: 50%;
     background: #73d580;
-    font-size: 52px;
+    font-size: 50px;
     color: #ffffff;
     text-align: center;
     box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: 10;
+}
+.topo:hover {
+	color: #343a40;
 }
