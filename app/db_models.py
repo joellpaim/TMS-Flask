@@ -1,3 +1,4 @@
+import profile
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 
@@ -10,7 +11,7 @@ class User(UserMixin, db.Model):
 	name = db.Column(db.Text, nullable=False)
 	email = db.Column(db.String(50), nullable=False)
 	phone = db.Column(db.String(50), nullable=False)
-	password = db.Column(db.String(250), nullable=False)
+	password = db.Column(db.String(250), nullable=False)	
 	admin = db.Column(db.Boolean, nullable=True, default=False)
 
 class Categoria(db.Model):

@@ -60,7 +60,7 @@
 					<td>{{ dispositivo.details[:40] | safe }}...</td>
 					<td>
 						<a class="btn btn-info" href="{{ url_for('admin.edit', type='dispositivo', id=dispositivo.id) }}">&#9998;</a>
-						<a class="btn btn-danger" href="{{ url_for('admin.delete', type='dispositivo', id=dispositivo.id) }}">&#10060;</a>
+						<a class="btn btn-danger" href="{{ url_for('admin.delete', type='dispositivos', id=dispositivo.id) }}">&#10060;</a>
 					</td>
 				</tr>
     {% endfor %}

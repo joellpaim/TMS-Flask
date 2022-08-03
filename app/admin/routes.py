@@ -1,4 +1,5 @@
 from email.mime import image
+import profile
 from flask import Blueprint, render_template, url_for, flash
 from werkzeug.utils import redirect
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -251,13 +252,15 @@ def edit(type, id):
     
     elif type == "user":
         user = User.query.get(id)
+        #profile = Profile.query.get(user.id)
         form = AdminRegisterForm(
             name=user.name,
             email=user.email,
             phone=user.phone,
             password=user.password,
             admin=user.admin,
-        )
+            image = "sem imagem",
+        )        
         if form.validate_on_submit():
             user.name = form.name.data
             user.email = form.email.data

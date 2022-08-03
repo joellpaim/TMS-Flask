@@ -26,6 +26,7 @@ class AdminRegisterForm(FlaskForm):
 	password = PasswordField("Senha:", validators=[DataRequired(), Regexp("^[a-zA-Z0-9_\-&$@#!%^*+.]{8,30}$", message='Password must be 8 characters long and should contain letters, numbers and symbols.')])
 	confirm = PasswordField("Confirmar Senha:",validators=[EqualTo('password', message='Passwords must match')])
 	admin = BooleanField("Admin")
+	image = "sem imagem"
 	submit = SubmitField("Cadastrar")
 
 class CadastroCategoria(FlaskForm):
