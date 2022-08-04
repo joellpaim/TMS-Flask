@@ -7,7 +7,7 @@ from app.db_models import Categoria, Item, Maquina, Dispositivo, Ferramenta,Inse
 
 class AddItemForm(FlaskForm):
 	code = StringField("Código:", validators=[DataRequired()])
-	name = StringField("Nome:", validators=[DataRequired(), Length(max=50)])
+	name = StringField("Descrição:", validators=[DataRequired(), Length(max=50)])
 	image = ("Sem imagem")
 	category = StringField("Categoria:", validators=[DataRequired(), Length(max=50)])
 	details = StringField("Detalhes:", validators=[DataRequired()])

@@ -16,6 +16,8 @@
 	{% endfor %}
 	{% endwith %}
 
+	
+
     {% if not items %}
 	<div class="container mg-3 p-3">
         
@@ -26,13 +28,18 @@
 		<a href="{{ url_for('admin.cleartable',type='items') }}" class="btn btn-danger">
 			<i class="fas fa-trash fa-fw"></i>
 			Limpar tabela
-		</a>	
+		</a>
+		{% if search %}
+		<a class="btn btn-danger" href="{{ url_for('admin.items') }}">buscar por {{ query }} &#10060;</a>
+		{% else %}
+		{% endif %}
 	
 	</div>
 	<div class="flash-error">Não há peças cadastradas.</div>
 	{% else %}
     <div class="container mg-3 p-3">
         <h4 class="text-center p-3">Tabela produtos</h4>
+		<hr>
 		<a href="{{ url_for('admin.add') }}" class="btn btn-success">
 			<i class="fas fa-plus fa-fw"></i>
 			Cadastrar produto
@@ -40,7 +47,22 @@
 		<a href="{{ url_for('admin.cleartable',type='items') }}" class="btn btn-danger">
 			<i class="fas fa-trash fa-fw"></i>
 			Limpar tabela
-		</a>	
+		</a>
+		<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="{{ url_for('admin.search',type='items') }}">
+			<div class="input-group pesquisa">
+				<input class="form-control bg-light border-0 small" placeholder="Pesquisar" aria-label="Search" aria-describedby="basic-addon2" type="search" name="query" >
+				<div class="input-group-append">
+					<button class="btn btn-info" type="submit">
+						<i class="fas fa-search fa-sm"></i>
+					</button>
+				</div>
+			</div>
+		</form>
+		{% if search %}
+		<a class="btn btn-danger" href="{{ url_for('admin.items') }}">buscar por {{ query }} &#10060;</a>
+		{% else %}
+		{% endif %}
+		</div>	
 
 		<div class="mt-3">
 			<table class="table table-striped tabela-responsiva">

@@ -1,5 +1,10 @@
+:root {
+	--pcolor: #73d580;
+	--scolor: #73c6d5;
+	--fundo: #e2eaef;
+}
 body {
-	background: #e2eaef;
+	background: var(--fundo);
 	font-family: 'Poppins', sans-serif;
 }
 h2 {
@@ -18,7 +23,7 @@ h2::after {
 	margin: 0 auto;
 	height: 4px;
 	border-radius: 1px;
-	background: #73d580;
+	background: var(--pcolor);
 	left: 0;
 	right: 0;
 	bottom: -20px;
@@ -64,12 +69,12 @@ h2::after {
 	margin-bottom: 5px;
 }
 .carousel .thumb-content .btn {
-	color: #73d580;
+	color: var(--pcolor);
 	font-size: 12px;
 	text-transform: uppercase;
 	font-weight: bold;
 	background: none;
-	border: 1px solid #73d580;
+	border: 1px solid var(--pcolor);
 	padding: 6px 14px;
 	margin-top: 5px;
 	line-height: 16px;
@@ -77,16 +82,16 @@ h2::after {
 }
 .carousel .thumb-content .btn:hover, .carousel .thumb-content .btn:focus {
 	color: #fff;
-	background: #73d580;
+	background: var(--pcolor);
 	box-shadow: none;
 }
 .btn-detalhe {
-	color: #73d580;
+	color: var(--pcolor);
 	font-size: 12px;
 	text-transform: uppercase;
 	font-weight: bold;
 	background: none;
-	border: 1px solid #73d580;
+	border: 1px solid var(--pcolor);
 	padding: 6px 14px;
 	margin-top: 5px;
 	line-height: 16px;
@@ -95,16 +100,16 @@ h2::after {
 }
 .btn-detalhe:hover, .btn-detalhe:focus {
 	color: #fff;
-	background: #73d580;
+	background: var(--pcolor);
 	box-shadow: none;
 }
 .btn-disp {
-	color: #73c6d5;
+	color: var(--scolor);
 	font-size: 12px;
 	text-transform: uppercase;
 	font-weight: bold;
 	background: none;
-	border: 1px solid #73c6d5;
+	border: 1px solid var(--scolor);
 	padding: 6px 14px;
 	margin-top: 5px;
 	line-height: 16px;
@@ -113,7 +118,7 @@ h2::after {
 }
 .btn-disp:hover, .btn-disp:focus {
 	color: #fff;
-	background: #73c6d5;
+	background: var(--scolor);
 	box-shadow: none;
 }
 .btn-ferr {
@@ -150,13 +155,13 @@ h2::after {
 .carousel-control-prev, .carousel-control-next {
 	height: 40px;
 	width: 40px;
-	background: #73d580;	
+	background: var(--pcolor);	
 	margin: auto 0;
 	border-radius: 4px;
 	opacity: 0.8;
 }
 .carousel-control-prev:hover, .carousel-control-next:hover {
-	background: #73d580;
+	background: var(--pcolor);
 	opacity: 1;
 }
 .carousel-control-prev i, .carousel-control-next i {
@@ -219,24 +224,29 @@ h2::after {
 }
 .forms {
 	max-width: 450px;
+	margin: auto;
 	background-color: #343a40;
 	border-radius: 10px;
 	padding: 25px;
 	color: aliceblue;
 }
+.forms .btn-default {
+	font-weight: bold;
+	background-color: var(--pcolor);
+}
 .btn-busca {
-	background-color: #73d580;
+	background-color: var(--pcolor);
 	color: white;
 }
 .card-maquina {
 	background-color: white;
-	box-shadow: -5px 5px #73d580;
+	box-shadow: -5px 5px var(--pcolor);
 	border-radius: 10px;
 	max-width: 18rem;
 	transition: 300ms ease-in-out;
 }
 .card-maquina:hover {
-	box-shadow: -5px 5px #73c6d5;
+	box-shadow: -5px 5px var(--scolor);
 	transform: scale(1.05);
 	margin-bottom: 15px;
 	margin-top: 15px;
@@ -273,7 +283,7 @@ h2::after {
     height: 70px;
     width: 70px;
     border-radius: 50%;
-    background: #73d580;
+    background: var(--pcolor);
     font-size: 50px;
     color: #ffffff;
     text-align: center;

@@ -1,6 +1,6 @@
 from email.mime import image
 import profile
-from flask import Blueprint, render_template, url_for, flash
+from flask import Blueprint, render_template, url_for, flash, request
 from werkzeug.utils import redirect
 from werkzeug.security import generate_password_hash, check_password_hash
 from ..db_models import Item, db, User, Categoria, Dispositivo, Ferramenta, Inserto, Maquina, maq_disp, maq_ferr, maq_item
@@ -473,3 +473,15 @@ def adminregister():
         flash('Administrador registrado com sucesso! Você deve logar agora.', 'success')
         return redirect(url_for('login'))
     return render_template("admin/register.html", form=form)
+
+@admin.route('/search/<string:type>')
+def search(type):
+    query = request.args['query']
+    search = "%{}%".format(query)
+
+    if type == 'items':      
+        items = Item.query.filter(Item.code.like(search)).all()
+        return render_template('admin/items.html', items=items, search=True, query=query)
+
+    else:
+        pass
