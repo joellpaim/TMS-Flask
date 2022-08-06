@@ -227,6 +227,7 @@ def add_ferramenta():
 @admin.route('/edit/<string:type>/<int:id>', methods=['POST', 'GET'])
 @admin_only
 def edit(type, id):
+
     if type == "item":
         item = Item.query.get(id)
         form = AddItemForm(
@@ -303,6 +304,8 @@ def edit(type, id):
             items=maquina.itens,
             ferramentas=maquina.ferramentas
         )
+
+        print(maquina.dispositivos)
                 
         if form.validate_on_submit():
             maquina.code = form.code.data
@@ -384,8 +387,7 @@ def edit(type, id):
             db.session.commit()
             return redirect(url_for(f'admin.{type}s'))
 
-    return render_template('admin/add.html', form=form)
-
+    return render_template('admin/edit.html', form=form, maquina=maquina)
 
 @admin.route('/delete/<string:type>/<int:id>', methods=['POST', 'GET'])
 @admin_only

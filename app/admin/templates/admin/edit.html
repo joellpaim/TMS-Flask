@@ -1,0 +1,81 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+	Cadastro - TMS
+{% endblock %}
+<script src="https://js.stripe.com/v3/"></script>
+{% block content %}
+	{% with msgs =  get_flashed_messages(with_categories=True) %}
+	{% for c, msg in msgs %}
+		{% if c == 'error' %}
+			<div class="flash-error">
+		{% else %}
+			<div class="success">
+		{% endif %}
+			{{ msg }}</div><br>
+	{% endfor %}
+	{% endwith %}
+	
+	<div class="row">
+		<div class="forms" style="max-width: 95vw;">
+			{{ wtf.quick_form(form, enctype="multipart/form-data") }}			
+		</div>
+		{% if form.image.data %}
+		<div class="col">
+			<img id="preview" src="{{ form.image.data }}" alt="">
+		</div>
+		{% else %}
+		
+		{% endif %}
+	
+	{% if maquina.dispositivos %}
+	<div class="col m-3 p-3" style="max-width: 95vw;">
+		<h3 class="text-center">Dispositivos <span class="btn btn-info">{{ maquina.dispositivos | length }}</span></h3>
+		<div class="row">
+		{% for dispositivo in maquina.dispositivos %}
+			<div class="col">
+				<div class="card">	
+					<a class="btn btn-danger" href="#">&#10060;</a>				
+					<h4 class="text-center">{{ dispositivo.code }}</h4>
+				</div>
+			</div>
+		{% endfor %}
+		</div>		
+	</div>
+	{% else %}
+	{% endif %}
+
+	{% if maquina.itens %}
+	<div class="col m-3 p-3" style="max-width: 95vw;">
+		<h3 class="text-center">Peças <span class="btn btn-info">{{ maquina.itens | length }}</span></h3>
+		<div class="row">
+		{% for iten in maquina.itens %}
+			<div class="col">
+				<div class="card mg-3 mt-3">	
+					<a class="btn btn-danger" href="#">&#10060;</a>				
+					<h4 class="text-center">{{ iten.code }}</h4>
+				</div>
+			</div>
+		{% endfor %}
+		</div>		
+	</div>
+	{% else %}
+	{% endif %}
+</div>
+	
+    
+	<script>
+		function readImage() {
+		if (this.files && this.files[0]) {
+			var file = new FileReader();
+			file.onload = function(e) {
+				document.getElementById("preview").src = e.target.result;
+			};       
+			file.readAsDataURL(this.files[0]);
+		}
+	}
+	
+	document.getElementById("img-input").addEventListener("change", readImage, false);
+	</script>
+    
+{% endblock %}
