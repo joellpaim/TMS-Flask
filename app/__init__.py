@@ -126,9 +126,13 @@ def stripe_webhook():
 
 @app.route("/")
 def home():
-	items = Item.query.all()
-	maquinas = Maquina.query.all()
-	return render_template("home.html", items=items, maquinas=maquinas)
+	if current_user.is_authenticated:
+		items = Item.query.all()
+		maquinas = Maquina.query.all()
+		return render_template("home.html", items=items, maquinas=maquinas)
+
+	else:
+		return redirect(url_for('login'))
 
 @app.route("/login", methods=['POST', 'GET'])
 def login():
