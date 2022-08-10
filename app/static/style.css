@@ -241,15 +241,11 @@ h2::after {
 .card-maquina {
 	background-color: white;
 	box-shadow: -5px 5px var(--pcolor);
-	border-radius: 10px;
 	max-width: 18rem;
 	transition: 300ms ease-in-out;
 }
 .card-maquina:hover {
 	box-shadow: -5px 5px var(--scolor);
-	transform: scale(1.05);
-	margin-bottom: 15px;
-	margin-top: 15px;
 }
 .sec {
 	height: 100vh;
