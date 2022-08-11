@@ -140,6 +140,13 @@ def profile():
 	else:
 		return redirect(url_for('login'))
 
+@app.route("/plans")
+def plans():
+	if current_user.is_authenticated:
+		return render_template("plans.html")
+	else:
+		return redirect(url_for('login'))
+
 @app.route("/login", methods=['POST', 'GET'])
 def login():
 	if current_user.is_authenticated:

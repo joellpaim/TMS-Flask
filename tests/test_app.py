@@ -59,4 +59,4 @@ def test_logando_usuario(client):
 
 def test_acesso_ao_perfil(client):
     response = client.get("/profile")
-    assert response.status_code == 200
+    assert response.status_code == 302

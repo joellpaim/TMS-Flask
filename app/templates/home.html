@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-	Home - TMS
+	FactoryMS - Sistema de Gestão de Usinagem
 {% endblock %}
 
 {% block content %}
@@ -46,11 +46,11 @@
 	<div class="container-xl">
 		<div class="row">
 			<div class="col-md-12">
-				<h2>Máquinas <b>{{ maquinas | length }}</b></h2>
+				<h2>Máquinas <b>{{ maquinas | length }}</b></h2>				
 					<div class="row">
 						{% for maquina in maquinas %}
 						<div class="col-sm-3 mb-3">
-							<div class="card card-maquina" style="width: 18rem;">
+							<div class="card card-maquina" style="max-width: 18rem;">
 								<img src="{{ maquina.image }}" class="card-img-top" alt="{{ maquina.name }}">
 								<div class="card-body">
 								  <h5 class="card-title">{{ maquina.code }}</h5>

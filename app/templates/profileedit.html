@@ -32,23 +32,24 @@
                     <h4 class="text-right">Configurações de Perfil</h4>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Nome</label>
-                    <p>{{ current_user.first_name }}</p></div>
-                    <div class="col-md-6"><label class="labels">Sobrenome</label><p>{{ current_user.last_name }}</p></div>
+                    <div class="col-md-6"><label class="labels">Nome</label><input type="text" class="form-control" placeholder="Primeiro nome" value=""></div>
+                    <div class="col-md-6"><label class="labels">Sobrenome</label><input type="text" class="form-control" value="" placeholder="Último nome"></div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">Telefone</label><p>{{ current_user.phone }}</p></div>
-                    <div class="col-md-12"><label class="labels">Endereço</label><p>Rua Fulano de Tal, 123</p></div>
-                    <div class="col-md-12"><label class="labels">Complemento</label><p>N/A</p></div>
-                    <div class="col-md-12"><label class="labels">Código Postal</label><p>95000-200</p></div>
-                    <div class="col-md-12"><label class="labels">Estado</label><p>RS</p></div>
-                    <div class="col-md-12"><label class="labels">Cidade</label><p>Caxias do Sul</p></div>
-                    <div class="col-md-12"><label class="labels">Email</label><p>{{ current_user.email }}</p></div>                   
+                    <div class="col-md-12"><label class="labels">Telefone</label><input type="text" class="form-control" placeholder="enter phone number" value=""></div>
+                    <div class="col-md-12"><label class="labels">Endereço</label><input type="text" class="form-control" placeholder="enter address line 1" value=""></div>
+                    <div class="col-md-12"><label class="labels">Complemento</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
+                    <div class="col-md-12"><label class="labels">Código Postal</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
+                    <div class="col-md-12"><label class="labels">Estado</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
+                    <div class="col-md-12"><label class="labels">Cidade</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
+                    <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="enter email id" value=""></div>
+                    <div class="col-md-12"><label class="labels">Educação</label><input type="text" class="form-control" placeholder="education" value=""></div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-6"><label class="labels">País</label><p>Brasil</p></div>                    
+                    <div class="col-md-6"><label class="labels">País</label><input type="text" class="form-control" placeholder="country" value=""></div>
+                    <div class="col-md-6"><label class="labels">Região</label><input type="text" class="form-control" value="" placeholder="state"></div>
                 </div>
-                <div class="mt-5 text-center"><button class="btn btn-info profile-button" type="button">Editar Perfil</button></div>
+                <div class="mt-5 text-center"><button class="btn btn-success profile-button" type="button">Salvar Perfil</button></div>
             </div>
         </div>
         <div class="col-md-4">

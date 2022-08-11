@@ -28,10 +28,10 @@
 							<h3><b>{{ maquina.name }}</b></h3>
 							<h5>Código: {{ maquina.code }}</h5><br>
 							<h5>Detalhes: {{ maquina.details | safe }}</h5>
-							<h5>Tamanho do Magazine: <span class="btn btn-success">30</span></h5>
-							<h5>RPM Max: </h5>
-							<h5>Data de aquisição: </h5>
-							<h5>Serial: </h5>
+							<h5>Tamanho do Magazine: 30</h5>
+							<h5>RPM Max: 15000</h5>
+							<h5>Data de aquisição: 12/12/2021</h5>
+							<h5>Serial: bg15423554234</h5>
 						</div>						              
 					</div>
 					<a href="#dispositivos" class="btn btn-info">Dispositivos</a>
@@ -50,7 +50,7 @@
 					{% for dispositivo in maquina.dispositivos %}
 					<div class="col-sm-3 mg-3">				
 						
-							<div class="card">
+							<div class="card text-center p-2">
 								<div class="img-wrapper" >
 									<img src="{{ dispositivo.image }}" style="max-height: 200px;" class="card-img">
 								</div>
@@ -79,7 +79,7 @@
 					{% for item in maquina.itens %}
 					<div class="col-sm-3 mg-3 mt-3">				
 						
-							<div class="card">					
+							<div class="card text-center p-2">					
 								<h3>{{ item.code }}</h3>
 								<h5>{{ item.name }}</h5>
 								<a href="{{ url_for('item', id=item.id) }}" class="btn btn-detalhe">Ver detalhes</a>
