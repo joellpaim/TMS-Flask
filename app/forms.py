@@ -9,7 +9,8 @@ class LoginForm(FlaskForm):
 	submit = SubmitField("Entrar")
 
 class RegisterForm(FlaskForm):
-	name = StringField("Nome:", validators=[DataRequired(), Length(max=50)])
+	first_name = StringField("Nome:", validators=[DataRequired(), Length(max=50)])
+	last_name = StringField("Sobrenome:", validators=[DataRequired(), Length(max=50)])
 	phone = StringField("Telefone:", validators=[DataRequired(), Length(max=30)])
 	email = StringField("Email:", validators=[DataRequired(), Email()])
 	password = PasswordField("Senha:", validators=[DataRequired(), Regexp("^[a-zA-Z0-9_\-&$@#!%^*+.]{8,30}$", message='Password must be 8 characters long and should contain letters, numbers and symbols.')])

@@ -10,3 +10,4 @@ Brainstorming
 [ ] - Informações adicionais de Insertos
 [ ] - Formulário de registro de quebra de ferramentas
 [ ] - Registros de afiação
+[ ] - Registro de reutilização de insertos

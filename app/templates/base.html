@@ -53,7 +53,7 @@
   <body id="topo">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="{{ url_for('home') }}"><h3>TMS<b style="color: #73d580;">.</b></h3></a>
+      <a class="navbar-brand" href="{{ url_for('home') }}"><h3>TMS<b>.</b></h3></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -122,8 +122,8 @@
                             </div>
                         </div>
                         <div>
-                            <div class="small text-gray-500">December 12, 2019</div>
-                            <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                            <div class="small text-gray-500">10 de Agosto, 2022</div>
+                            <span class="font-weight-bold">Há dispositivos necessitando revisão</span>
                         </div>
                     </a>                    
                     <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todos</a>
@@ -163,12 +163,12 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ current_user.name }}</span>
-                    <img class="img-profile rounded-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8KtRvS3P3QCaNV8y6gtaHp3pqmZiwptbSNQ&usqp=CAU">
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ current_user.first_name }} {{ current_user.last_name }}</span>
+                    <img class="img-profile" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="{{ url_for('profile') }}">
                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                         Perfil
                     </a>

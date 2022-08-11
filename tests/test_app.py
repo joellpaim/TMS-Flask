@@ -23,21 +23,22 @@ def client():
 
 
 
-def test_se_a_pagina_de_usuarios_retorna_status_code_200(client):
-    response = client.get("/")
+def test_se_a_pagina_de_login_retorna_status_code_200(client):
+    response = client.get("/login")
     assert response.status_code == 200
 
 def test_se_o_link_de_resgistrar_existe(client):
-    response = client.get("/")
-    assert "register" in response.get_data(as_text=True)
+    response = client.get("/register")
+    assert response.status_code == 200
 
-def test_se_o_link_de_login_existe(client):
-    response = client.get("/")
-    assert "login" in response.get_data(as_text=True)
+#def test_se_o_link_de_login_existe(client):
+#    response = client.get("/")
+#    assert "login" in response.get_data(as_text=True)
 
 def test_registrando_usuario(client):
     data = {
-        "name": "Amanda",
+        "first_name": "Amanda",
+        "last_name": "Lorem",
         "phone": "5529928826",
         "email": "amanda@spacedevs.com.br",
         "password": "12345678wasd",
@@ -54,4 +55,8 @@ def test_logando_usuario(client):
     }
     client.post("/register", data=data, follow_redirects=True)
     response = client.post("/login", data=data, follow_redirects=True)
-    assert "" in response.get_data(as_text=True)
+    assert "/" in response.get_data(as_text=True)
+
+def test_acesso_ao_perfil(client):
+    response = client.get("/profile")
+    assert response.status_code == 200

@@ -1,17 +1,40 @@
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
+import datetime
+
+"""
+INSERT INTO tabela_novo (id, code, name, image, details)
+SELECT id, code, name, image, details FROM tabela;
+
+ALTER TABLE tabela RENAME TO tabela_old;
+
+ALTER TABLE tabela_novo RENAME TO tabela;
+
+PRAGMA foreign_keys = 0;
+DROP TABLE tabela_old;
+PRAGMA foreign_keys = 1;
+
+"""
 
 
 db = SQLAlchemy()
 
+class Profile(db.Model):
+	__tablename__ = "profiles"
+	id = db.Column(db.Integer, primary_key=True)
+	image = db.Column(db.String(250), nullable=True)
+	user = db.relationship('User', backref='profiles', lazy=True, uselist=False, cascade='all,delete')
+
 class User(UserMixin, db.Model):
 	__tablename__ = "users"
 	id = db.Column(db.Integer, primary_key=True)
-	name = db.Column(db.Text, nullable=False)
+	first_name = db.Column(db.String(50), nullable=False)
+	last_name = db.Column(db.String(50), nullable=False)
 	email = db.Column(db.String(50), nullable=False)
 	phone = db.Column(db.String(50), nullable=False)
 	password = db.Column(db.String(250), nullable=False)	
 	admin = db.Column(db.Boolean, nullable=True, default=False)
+	profile_id = db.Column(db.Integer, db.ForeignKey('profiles.id'), nullable=True)
 
 class Categoria(db.Model):
 	__tablename__ = "categorias"
@@ -43,7 +66,15 @@ class Maquina(db.Model):
 	code = db.Column(db.String(100), nullable=False)
 	name = db.Column(db.String(100), nullable=False)
 	image = db.Column(db.String(250), nullable=True)
-	details = db.Column(db.String(250), nullable=False)
+	details = db.Column(db.String(250), nullable=True)
+	data_aquisicao = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+	cone = db.Column(db.String(20), nullable=True)
+	velocidade = db.Column(db.String(20), nullable=True)
+	avanco_rapido = db.Column(db.String(20), nullable=True)
+	mesa = db.Column(db.String(20), nullable=True)
+	luneta = db.Column(db.String(20), nullable=True)
+	potencia = db.Column(db.String(10), nullable=True)
+	capacidade_magazine = db.Column(db.String(10), nullable=True)
 	category_id = db.Column(db.Integer, db.ForeignKey('categorias.id'),
         nullable=True)
 	dispositivos = db.relationship('Dispositivo', secondary=maq_disp, lazy='subquery',

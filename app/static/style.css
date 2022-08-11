@@ -1,11 +1,15 @@
 :root {
-	--pcolor: #73d580;
-	--scolor: #73c6d5;
-	--fundo: #e2eaef;
+	--pcolor: #444444;
+	--scolor: #FF6600;
+	--fundo: #F2F2F2;
+	--navcolor: #444444;
 }
 body {
 	background: var(--fundo);
 	font-family: 'Poppins', sans-serif;
+}
+.navbar-brand b {
+	color: var(--scolor);
 }
 h2 {
 	color: #000;
@@ -28,79 +32,21 @@ h2::after {
 	right: 0;
 	bottom: -20px;
 }
-.carousel {
-	margin: 50px auto;
-	padding: 0 70px;
-}
-.carousel .item {
-	color: #747d89;
-	min-height: 325px;
-	text-align: center;
-	overflow: hidden;
-}
-.carousel .thumb-wrapper, .card {
-	padding: 25px 15px;
-	background: #fff;
-	border-radius: 6px;
-	text-align: center;
-	position: relative;
-	box-shadow: 0 2px 3px rgba(0,0,0,0.2);
-}
-.carousel .item .img-box {
-	height: 120px;
-	margin-bottom: 20px;
-	width: 100%;
-	position: relative;
-}
-.carousel .item img {	
-	max-width: 100%;
-	max-height: 100%;
-	display: inline-block;
-	position: absolute;
-	bottom: 0;
-	margin: 0 auto;
-	left: 0;
-	right: 0;
-}
-.carousel .item h4 {
-	font-size: 18px;
-}
-.carousel .item h4, .carousel .item p, .carousel .item ul {
-	margin-bottom: 5px;
-}
-.carousel .thumb-content .btn {
-	color: var(--pcolor);
-	font-size: 12px;
-	text-transform: uppercase;
-	font-weight: bold;
-	background: none;
-	border: 1px solid var(--pcolor);
-	padding: 6px 14px;
-	margin-top: 5px;
-	line-height: 16px;
-	border-radius: 20px;
-}
-.carousel .thumb-content .btn:hover, .carousel .thumb-content .btn:focus {
-	color: #fff;
-	background: var(--pcolor);
-	box-shadow: none;
-}
 .btn-detalhe {
 	color: var(--pcolor);
 	font-size: 12px;
 	text-transform: uppercase;
 	font-weight: bold;
 	background: none;
-	border: 1px solid var(--pcolor);
+	border: 2px solid var(--scolor);
 	padding: 6px 14px;
 	margin-top: 5px;
 	line-height: 16px;
-	border-radius: 20px;
-	display: block;
+	border-radius: 2px;
 }
 .btn-detalhe:hover, .btn-detalhe:focus {
 	color: #fff;
-	background: var(--pcolor);
+	background: var(--scolor);
 	box-shadow: none;
 }
 .btn-disp {
@@ -139,78 +85,6 @@ h2::after {
 	background: #f1a35a;
 	box-shadow: none;
 }
-.carousel .thumb-content .btn i {
-	font-size: 14px;
-	font-weight: bold;
-	margin-left: 5px;
-}
-.carousel .item-price {
-	font-size: 13px;
-	padding: 2px 0;
-}
-.carousel .item-price strike {
-	opacity: 0.7;
-	margin-right: 5px;
-}
-.carousel-control-prev, .carousel-control-next {
-	height: 40px;
-	width: 40px;
-	background: var(--pcolor);	
-	margin: auto 0;
-	border-radius: 4px;
-	opacity: 0.8;
-}
-.carousel-control-prev:hover, .carousel-control-next:hover {
-	background: var(--pcolor);
-	opacity: 1;
-}
-.carousel-control-prev i, .carousel-control-next i {
-	font-size: 36px;
-	position: absolute;
-	top: 50%;
-	display: inline-block;
-	margin: -19px 0 0 0;
-	z-index: 5;
-	left: 0;
-	right: 0;
-	color: #fff;
-	text-shadow: none;
-	font-weight: bold;
-}
-.carousel-control-prev i {
-	margin-left: -2px;
-}
-.carousel-control-next i {
-	margin-right: -4px;
-}		
-.carousel-indicators {
-	bottom: -50px;
-}
-.carousel-indicators li, .carousel-indicators li.active {
-	width: 10px;
-	height: 10px;
-	margin: 4px;
-	border-radius: 50%;
-	border: none;
-}
-.carousel-indicators li {	
-	background: rgba(0, 0, 0, 0.2);
-}
-.carousel-indicators li.active {	
-	background: rgba(0, 0, 0, 0.6);
-}
-.carousel .wish-icon {
-	position: absolute;
-	right: 10px;
-	top: 10px;
-	z-index: 99;
-	cursor: pointer;
-	font-size: 16px;
-	color: #abb0b8;
-}
-.carousel .wish-icon .fa-heart {
-	color: #ff6161;
-}
 .star-rating li {
 	padding: 0;
 }
@@ -219,8 +93,9 @@ h2::after {
 	color: #ffc000;
 }
 .img-profile {
-	max-width: 25px;
-	max-height: 25px;
+	width: 30px;
+	height: 30px;
+	border-radius: 100%;
 }
 .forms {
 	max-width: 450px;
@@ -235,7 +110,7 @@ h2::after {
 	background-color: var(--pcolor);
 }
 .btn-busca {
-	background-color: var(--pcolor);
+	background-color: var(--scolor);
 	color: white;
 }
 .card-maquina {
@@ -246,6 +121,10 @@ h2::after {
 }
 .card-maquina:hover {
 	box-shadow: -5px 5px var(--scolor);
+}
+.card-title {
+	color: var(--scolor);
+	font-weight: bolder;
 }
 .sec {
 	height: 100vh;
@@ -279,14 +158,15 @@ h2::after {
     height: 70px;
     width: 70px;
     border-radius: 50%;
-    background: var(--pcolor);
+    background: var(--scolor);
     font-size: 50px;
-    color: #ffffff;
+    color: var(--fundo);
     text-align: center;
     box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: 10;
 }
 .topo:hover {
-	color: #343a40;
+	color: var(--fundo);
+	transform: scale(1.02);
 }

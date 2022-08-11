@@ -130,7 +130,13 @@ def home():
 		items = Item.query.all()
 		maquinas = Maquina.query.all()
 		return render_template("home.html", items=items, maquinas=maquinas)
+	else:
+		return redirect(url_for('login'))
 
+@app.route("/profile")
+def profile():
+	if current_user.is_authenticated:
+		return render_template("profile.html")
 	else:
 		return redirect(url_for('login'))
 
@@ -163,7 +169,8 @@ def register():
 		if user:
 			flash(f"Usuário com email {user.email} já existe!!<br> <a href={url_for('login')}>Entrar agora</a>", "error")
 			return redirect(url_for('register'))
-		new_user = User(name=form.name.data,
+		new_user = User(first_name=form.first_name.data,
+						last_name=form.last_name.data,
 						email=form.email.data,
 						password=generate_password_hash(
 									form.password.data,
