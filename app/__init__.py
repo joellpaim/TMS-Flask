@@ -184,7 +184,7 @@ def register():
 									method='pbkdf2:sha256',
 									salt_length=8),
 						phone=form.phone.data,
-						admin=form.admin.data)
+						admin=0)
 						
 		db.session.add(new_user)
 		db.session.commit()
