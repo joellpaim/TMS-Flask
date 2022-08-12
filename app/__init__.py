@@ -21,6 +21,7 @@ app.register_blueprint(admin)
 stripe_keys = {
     "secret_key": os.environ["STRIPE_SECRET_KEY"],
     "publishable_key": os.environ["STRIPE_PUBLISHABLE_KEY"],
+	"endpoint_secret": os.environ["STRIPE_ENDPOINT_SECRET"],
 }
 
 stripe.api_key = stripe_keys["secret_key"]
@@ -74,6 +75,7 @@ def create_checkout_session():
 
         # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
         checkout_session = stripe.checkout.Session.create(
+			client_reference_id=current_user.id if current_user.is_authenticated else None,
             success_url=domain_url + "success?session_id={CHECKOUT_SESSION_ID}",
             cancel_url=domain_url + "cancelled",
             payment_method_types=["card"],
@@ -123,6 +125,12 @@ def stripe_webhook():
         # TODO: run some custom code here
 
     return "Success", 200
+
+# Home page in dev
+@app.route("/inicio")
+def inicio():
+		
+	return render_template("index.html")
 
 @app.route("/")
 def home():

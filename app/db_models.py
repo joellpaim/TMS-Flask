@@ -1,6 +1,7 @@
+import datetime
+
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
-import datetime
 
 """
 INSERT INTO tabela_novo (id, code, name, image, details)
@@ -19,12 +20,13 @@ PRAGMA foreign_keys = 1;
 
 db = SQLAlchemy()
 
+
 class Profile(db.Model):
 	__tablename__ = "profiles"
 	id = db.Column(db.Integer, primary_key=True)
 	image = db.Column(db.String(250), nullable=True)
 	user = db.relationship('User', backref='profiles', lazy=True, uselist=False, cascade='all,delete')
-
+	
 class User(UserMixin, db.Model):
 	__tablename__ = "users"
 	id = db.Column(db.Integer, primary_key=True)
@@ -35,6 +37,13 @@ class User(UserMixin, db.Model):
 	password = db.Column(db.String(250), nullable=False)	
 	admin = db.Column(db.Boolean, nullable=True, default=False)
 	profile_id = db.Column(db.Integer, db.ForeignKey('profiles.id'), nullable=True)
+	#factories = db.relationship("Fabrica")
+
+class Fabrica(db.Model):
+    __tablename__ = "factory"
+    id = db.Column(db.Integer, primary_key=True)	
+name = db.Column(db.String(50), nullable=True)
+	#user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
 
 class Categoria(db.Model):
 	__tablename__ = "categorias"
