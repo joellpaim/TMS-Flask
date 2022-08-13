@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+	
 
 	{% with msgs =  get_flashed_messages(with_categories=True) %}
 	{% for c, msg in msgs %}
@@ -49,13 +50,13 @@
 				<h2>Máquinas <b>{{ maquinas | length }}</b></h2>				
 					<div class="row">
 						{% for maquina in maquinas %}
-						<div class="col-sm-3 mb-3">
+						<div class="col-sm-3 mb-3 tt">
 							<div class="card card-maquina" style="max-width: 18rem;">
 								<img src="{{ maquina.image }}" class="card-img-top" alt="{{ maquina.name }}">
 								<div class="card-body">
 								  <h5 class="card-title">{{ maquina.code }}</h5>
 								  <h6 class="card-text">{{ maquina.name }}</h6>
-								  <a href="{{ url_for('maquina', id=maquina.id) }}" class="btn btn-detalhe">Ver detalhes</a>
+								  <a href="{{ url_for('maquina', id=maquina.id) }}" class="btn btn-detalhe fourth">Ver detalhes</a>
 								</div>
 							  </div>
 						</div>	

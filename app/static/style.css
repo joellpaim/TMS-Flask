@@ -11,6 +11,12 @@ body {
 .navbar-brand b {
 	color: var(--scolor);
 }
+.cp {
+	color: var(--pcolor);
+}
+.sp {
+	color: var(--scolor);
+}
 h2 {
 	color: #000;
 	font-size: 26px;
@@ -32,8 +38,10 @@ h2::after {
 	right: 0;
 	bottom: -20px;
 }
-.btn-detalhe {
-	color: var(--pcolor);
+.btn-default#submit {
+	color: var(--fundo);
+	display: block;
+	width: 100%;
 	font-size: 12px;
 	text-transform: uppercase;
 	font-weight: bold;
@@ -44,10 +52,35 @@ h2::after {
 	line-height: 16px;
 	border-radius: 2px;
 }
-.btn-detalhe:hover, .btn-detalhe:focus {
+.btn-detalhe {
+	color: var(--fundo);
+	font-size: 12px;
+	text-transform: uppercase;
+	font-weight: bold;
+	background: var(--pcolor);
+	border: 2px solid var(--scolor);
+	padding: 6px 14px;
+	margin-top: 5px;
+	line-height: 16px;
+	border-radius: 2px;
+}
+.btn-detalhe:hover, .btn-detalhe:focus, .btn-default#submit:focus {
 	color: #fff;
 	background: var(--scolor);
 	box-shadow: none;
+}
+.fourth, .btn-default#submit {
+	border-color: var(--scolor);
+	color: var(--fundo);
+	background-image: -webkit-linear-gradient(45deg, var(--scolor) 50%, transparent 50%);
+	background-image: linear-gradient(45deg, var(--scolor) 50%, transparent 50%);
+	background-position: 100%;
+	background-size: 400%;
+	-webkit-transition: background 300ms ease-in-out;
+	transition: background 300ms ease-in-out;
+}
+.fourth:hover, .btn-default#submit:hover {
+	background-position: 0;
 }
 .btn-disp {
 	color: var(--scolor);
@@ -105,13 +138,18 @@ h2::after {
 	padding: 25px;
 	color: aliceblue;
 }
-.forms .btn-default {
-	font-weight: bold;
+.login-form {
+	max-width: 450px;
+	margin: auto;
 	background-color: var(--pcolor);
+	box-shadow: -5px 0px 0px 0px var(--scolor);
+	border-radius: 10px;
+	padding: 25px;
+	color: var(--fundo);
 }
 .btn-busca {
 	background-color: var(--scolor);
-	color: white;
+	color: var(--fundo);
 }
 .card-maquina {
 	background-color: white;
@@ -169,4 +207,17 @@ h2::after {
 .topo:hover {
 	color: var(--fundo);
 	transform: scale(1.02);
+}
+.c-loader {
+	border: 6px solid var(--fundo);
+	border-top-color: var(--scolor);
+	animation: is-rotating 1s infinite;
+	border-radius: 50%;
+	height: 50px;
+	width: 50px;
+}
+@keyframes is-rotating {
+	to {
+	  transform: rotate(1turn);
+	}
 }
