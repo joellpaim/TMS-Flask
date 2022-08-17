@@ -58,11 +58,12 @@
               <li class="nav-item">
                 <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"><i class='fa fa-plus' style='font-size:14px'></i>  Cadastros</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu2">
-
+                  <!--
                   <li class="nav-item">
                       <a class="nav-link" href="{{ url_for('admin.adminregister') }}">
                       <i class='fa fa-user-tie' style='font-size:14px'></i> Administradores</a>
                   </li>
+                  -->
                   <li class="nav-item">
                       <a class="nav-link" href="{{ url_for('admin.users') }}">
                       <i class='fa fa-user' style='font-size:14px'></i> Usuários</a>
@@ -139,10 +140,12 @@
               <li>
                   <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class='fa fa-plus' style='font-size:14px'></i>  Cadastros</a>
                   <ul class="collapse list-unstyled" id="homeSubmenu">
+                      <!--
                       <li>
                           <a href="{{ url_for('admin.adminregister') }}">
                           <i class='fa fa-user-tie' style='font-size:14px'></i> Administradores</a>
                       </li>
+                      -->
                       <li>
                           <a href="{{ url_for('admin.users') }}">
                           <i class='fa fa-user' style='font-size:14px'></i> Usuários</a>
@@ -251,6 +254,6 @@
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='js/datatables-demo.js')}}"></script>
-    
+
   </body>
 </html>
