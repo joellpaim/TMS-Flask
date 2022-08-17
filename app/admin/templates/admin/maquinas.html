@@ -17,7 +17,7 @@
 	{% endwith %}
 
     {% if not maquinas %}
-		<div class="container mg-3 p-3">
+		<div class="mg-3 p-3">
 
 			<a href="{{ url_for('admin.addmaq') }}" class="btn btn-success">
 				<i class="fas fa-plus fa-fw"></i>
@@ -31,7 +31,7 @@
 		</div>
 		<div class="flash-error">Não há máquinas cadastradas.</div>
 	{% else %}
-	<div class="container mg-3 p-3">
+	<div class="mg-3 p-3">
 
 		<h4 class="text-center p-3">Tabela Máquinas</h4>
 		
@@ -43,27 +43,41 @@
 				<i class="fas fa-trash fa-fw"></i>
 				Limpar tabela
 			</a>
-			
-		<div class="mt-3">	
-			<table class="table table-striped tabela-responsiva" style="width: 95vw;">
-				<tr>
-					<th>Item id</th>
-					<th>Código</th>
-					<th>Nome</th>
-					<th>Operações</th>
-				</tr>
-			{% for maquina in maquinas %}
-				<tr>
-					<td>{{ maquina.id }}</td>
-					<td>{{ maquina.code }}</td>
-					<td>{{ maquina.name }}</td>
-					<td>
-						<a class="btn btn-info" href="{{ url_for('admin.edit', type='maquina', id=maquina.id) }}">&#9998;</a>
-						<a class="btn btn-danger" href="{{ url_for('admin.delete', type='maquinas', id=maquina.id) }}">&#10060;</a>
-					</td>
-				</tr>
-			{% endfor %}
-			</table>
+			<hr>
+		<div>	
+			<div class="table-responsive"">	
+				<table class="table table-striped tabela-responsiva table-bordered" id="dataTable" width="100%" cellspacing="0">
+					<thead>
+						<tr>
+							<th>Item id</th>
+							<th>Código</th>
+							<th>Nome</th>
+							<th>Operações</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<th>Item id</th>
+							<th>Código</th>
+							<th>Nome</th>
+							<th>Operações</th>
+						</tr>
+					</tfoot>
+					<tbody>
+						{% for maquina in maquinas %}
+							<tr>
+								<td>{{ maquina.id }}</td>
+								<td>{{ maquina.code }}</td>
+								<td>{{ maquina.name }}</td>
+								<td>
+									<a class="btn btn-info" href="{{ url_for('admin.edit', type='maquina', id=maquina.id) }}">&#9998;</a>
+									<a class="btn btn-danger" href="{{ url_for('admin.delete', type='maquinas', id=maquina.id) }}">&#10060;</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>				
+				</table>
+			</div>
 		</div>		
 	</div>
 
