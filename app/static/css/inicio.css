@@ -1,3 +1,13 @@
+:root {
+	--pcolor: #444444;
+	--scolor: #FF6600;
+	--fundo: #F2F2F2;
+	--navcolor: #444444;
+}
+body {
+	background: var(--fundo);
+	font-family: 'Poppins', sans-serif;
+}
 section {
   min-height: 100vh;
 }
@@ -6,4 +16,8 @@ section {
   background-repeat: no-repeat;
   background-size: cover;
   background-position-y: -600px;
+}
+.nav-item:hover {
+  color: var(--fundo);
+  box-shadow: 0px 5px 0px 0px var(--scolor);
 }
