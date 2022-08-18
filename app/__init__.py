@@ -1,15 +1,21 @@
-import os, json
+import json
+import os
 from datetime import datetime
-from flask import Flask, render_template, redirect, url_for, flash, request, abort, jsonify
-from flask_bootstrap import Bootstrap
-from .forms import LoginForm, RegisterForm
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import LoginManager, login_user, current_user, login_required, logout_user
-from .db_models import Maquina, db, User, Item, Dispositivo, Ferramenta, Inserto
-from itsdangerous import URLSafeTimedSerializer
-from dotenv import load_dotenv
-from .admin.routes import admin, maquinas
+
 import stripe
+from dotenv import load_dotenv
+from flask import (Flask, abort, flash, jsonify, redirect, render_template,
+                   request, url_for)
+from flask_bootstrap import Bootstrap
+from flask_login import (LoginManager, current_user, login_required,
+                         login_user, logout_user)
+from itsdangerous import URLSafeTimedSerializer
+from werkzeug.security import check_password_hash, generate_password_hash
+
+from .admin.routes import admin, maquinas
+from .db_models import (Dispositivo, Ferramenta, Inserto, Item, Maquina, User,
+                        db)
+from .forms import LoginForm, RegisterForm
 
 # https://testdriven.io/blog/flask-stripe-tutorial/
 
@@ -97,7 +103,6 @@ def create_checkout_session():
 def success():
     return render_template("success.html")
 
-
 @app.route("/cancelled")
 def cancelled():
     return render_template("cancelled.html")
@@ -139,7 +144,7 @@ def home():
 		maquinas = Maquina.query.all()
 		return render_template("home.html", items=items, maquinas=maquinas)
 	else:
-		return redirect(url_for('login'))
+		return redirect(url_for('inicio'))
 
 @app.route("/profile")
 def profile():

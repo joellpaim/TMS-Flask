@@ -11,20 +11,24 @@
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="static/inicio.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        
+        <link href="static/css/inicio.css" rel="stylesheet" /> 
+    
     </head>
     <body>
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-5">
-                <a class="navbar-brand" href="{{ url_for('home') }}">FactoryMS</a>
+                <a class="navbar-brand" href="{{ url_for('inicio') }}">FactoryMS</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('home') }}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Sobre</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Contato</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Serviços</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('inicio') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#features">Recursos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#plans">Planos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#testimonials">Depoimentos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('register') }}">Cadastro</a></li>
                     </ul>
@@ -32,16 +36,16 @@
             </div>
         </nav>
         <!-- Header-->
-        <header class="bg-dark py-5">
+        <header class="bg-dark py-5" id="bannerInicio">
             <div class="container px-5">
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-6">
-                        <div class="text-center my-5">
-                            <h1 class="display-5 fw-bolder text-white mb-2">Present your business in a whole new way</h1>
-                            <p class="lead text-white-50 mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit!</p>
+                        <div class="my-5">
+                            <h1 class="display-5 fw-bolder text-white mb-2">Um novo jeito de gerenciar seu ferramental de usinagem</h1>
+                            <p class="lead text-white-50 mb-4">Grandes passos são necessários para se manter entre os melhores, por isso lhe convido a conhecer a mais inovadora plataforma de gerenciamento de ferramental do mundo.</p>
                             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">Get Started</a>
-                                <a class="btn btn-outline-light btn-lg px-4" href="#!">Learn More</a>
+                                <a class="btn btn-info btn-lg px-4 me-sm-3" href="{{ url_for('register') }}">Iniciar</a>
+                                <a class="btn btn-outline-light btn-lg px-4" href="#features">Saiba mais</a>
                             </div>
                         </div>
                     </div>
@@ -53,29 +57,29 @@
             <div class="container px-5 my-5">
                 <div class="row gx-5">
                     <div class="col-lg-4 mb-5 mb-lg-0">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
-                        <h2 class="h4 fw-bolder">Featured title</h2>
-                        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                        <div class="feature bg-info bg-gradient text-white rounded-3 mb-3" ><i class="bi bi-collection"></i></div>
+                        <h2 class="h4 fw-bolder">Controle de Máquinas</h2>
+                        <p>Tenha todas as informações de suas máquinas na palma da mão, facilitando a tomada de decisões importantes para seu processo.</p>
                         <a class="text-decoration-none" href="#!">
-                            Call to action
+                            Saiba mais
                             <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
                     <div class="col-lg-4 mb-5 mb-lg-0">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
-                        <h2 class="h4 fw-bolder">Featured title</h2>
-                        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                        <div class="feature bg-info bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+                        <h2 class="h4 fw-bolder">Controle de Ferramental</h2>
+                        <p>Saiba exatamente que ferramenta usar para cada peça ou ainda qual a vida útil de suas ferramentas, tenha Setups mais rápidos e trocas no tempo certo.</p>
                         <a class="text-decoration-none" href="#!">
-                            Call to action
+                            Saiba mais
                             <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
                     <div class="col-lg-4">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
-                        <h2 class="h4 fw-bolder">Featured title</h2>
-                        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                        <div class="feature bg-info bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                        <h2 class="h4 fw-bolder">Controle de Dispositivos</h2>
+                        <p>Tenha total controle sobre seus dispositivos e moldes, defina datas de revisões e manutenções, programe-se com organização e assertividade.</p>
                         <a class="text-decoration-none" href="#!">
-                            Call to action
+                            Saiba mais
                             <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -83,57 +87,41 @@
             </div>
         </section>
         <!-- Pricing section-->
-        <section class="bg-light py-5 border-bottom">
+        <section class="bg-light py-5 border-bottom" id="plans">
             <div class="container px-5 my-5">
                 <div class="text-center mb-5">
-                    <h2 class="fw-bolder">Pay as you grow</h2>
-                    <p class="lead mb-0">With our no hassle pricing plans</p>
+                    <h2 class="fw-bolder">Pague conforme você cresce</h2>
+                    <p class="lead mb-0">Com nossos planos de preços sem complicações</p>
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <!-- Pricing card free-->
                     <div class="col-lg-6 col-xl-4">
                         <div class="card mb-5 mb-xl-0">
                             <div class="card-body p-5">
-                                <div class="small text-uppercase fw-bold text-muted">Free</div>
+                                <div class="small text-uppercase fw-bold text-muted">Básico</div>
                                 <div class="mb-3">
-                                    <span class="display-4 fw-bold">$0</span>
-                                    <span class="text-muted">/ mo.</span>
+                                    <span class="display-4 fw-bold">R$25</span>
+                                    <span class="text-muted">/mês</span>
                                 </div>
                                 <ul class="list-unstyled mb-4">
                                     <li class="mb-2">
                                         <i class="bi bi-check text-primary"></i>
-                                        <strong>1 users</strong>
+                                        <strong>1 Máquina</strong>
                                     </li>
                                     <li class="mb-2">
                                         <i class="bi bi-check text-primary"></i>
-                                        5GB storage
+                                        1 Produto
                                     </li>
                                     <li class="mb-2">
                                         <i class="bi bi-check text-primary"></i>
-                                        Unlimited public projects
+                                        1 Dispositivo
                                     </li>
                                     <li class="mb-2">
                                         <i class="bi bi-check text-primary"></i>
-                                        Community access
-                                    </li>
-                                    <li class="mb-2 text-muted">
-                                        <i class="bi bi-x"></i>
-                                        Unlimited private projects
-                                    </li>
-                                    <li class="mb-2 text-muted">
-                                        <i class="bi bi-x"></i>
-                                        Dedicated support
-                                    </li>
-                                    <li class="mb-2 text-muted">
-                                        <i class="bi bi-x"></i>
-                                        Free linked domain
-                                    </li>
-                                    <li class="text-muted">
-                                        <i class="bi bi-x"></i>
-                                        Monthly status reports
-                                    </li>
+                                        10 Ferramentas
+                                    </li>                                    
                                 </ul>
-                                <div class="d-grid"><a class="btn btn-outline-primary" href="#!">Choose plan</a></div>
+                                <div class="d-grid"><a class="btn btn-outline-primary" href="#">Escolher plano</a></div>
                             </div>
                         </div>
                     </div>
@@ -146,13 +134,13 @@
                                     Pro
                                 </div>
                                 <div class="mb-3">
-                                    <span class="display-4 fw-bold">$9</span>
-                                    <span class="text-muted">/ mo.</span>
+                                    <span class="display-4 fw-bold">R$90</span>
+                                    <span class="text-muted">/mês</span>
                                 </div>
                                 <ul class="list-unstyled mb-4">
                                     <li class="mb-2">
                                         <i class="bi bi-check text-primary"></i>
-                                        <strong>5 users</strong>
+                                        <strong>5 Máquinas</strong>
                                     </li>
                                     <li class="mb-2">
                                         <i class="bi bi-check text-primary"></i>
@@ -183,7 +171,7 @@
                                         Monthly status reports
                                     </li>
                                 </ul>
-                                <div class="d-grid"><a class="btn btn-primary" href="#!">Choose plan</a></div>
+                                <div class="d-grid"><a class="btn btn-primary" href="#!">Escolher plano</a></div>
                             </div>
                         </div>
                     </div>
@@ -193,13 +181,13 @@
                             <div class="card-body p-5">
                                 <div class="small text-uppercase fw-bold text-muted">Enterprise</div>
                                 <div class="mb-3">
-                                    <span class="display-4 fw-bold">$49</span>
-                                    <span class="text-muted">/ mo.</span>
+                                    <span class="display-4 fw-bold">R$149</span>
+                                    <span class="text-muted">/mês</span>
                                 </div>
                                 <ul class="list-unstyled mb-4">
                                     <li class="mb-2">
                                         <i class="bi bi-check text-primary"></i>
-                                        <strong>Unlimited users</strong>
+                                        <strong>20 Máquinas</strong>
                                     </li>
                                     <li class="mb-2">
                                         <i class="bi bi-check text-primary"></i>
@@ -231,7 +219,7 @@
                                         Monthly status reports
                                     </li>
                                 </ul>
-                                <div class="d-grid"><a class="btn btn-outline-primary" href="#!">Choose plan</a></div>
+                                <div class="d-grid"><a class="btn btn-outline-primary" href="#!">Escolher plano</a></div>
                             </div>
                         </div>
                     </div>
@@ -239,11 +227,11 @@
             </div>
         </section>
         <!-- Testimonials section-->
-        <section class="py-5 border-bottom">
+        <section class="py-5 border-bottom" id="testimonials">
             <div class="container px-5 my-5 px-5">
                 <div class="text-center mb-5">
-                    <h2 class="fw-bolder">Customer testimonials</h2>
-                    <p class="lead mb-0">Our customers love working with us</p>
+                    <h2 class="fw-bolder">Depoimentos dos Clientes</h2>
+                    <p class="lead mb-0">Nossos clientes amam trabalhar conosco</p>
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-6">
@@ -253,8 +241,8 @@
                                 <div class="d-flex">
                                     <div class="flex-shrink-0"><i class="bi bi-chat-right-quote-fill text-primary fs-1"></i></div>
                                     <div class="ms-4">
-                                        <p class="mb-1">Thank you for putting together such a great product. We loved working with you and the whole team, and we will be recommending you to others!</p>
-                                        <div class="small text-muted">- Client Name, Location</div>
+                                        <p class="mb-1">Obrigado por montar um produto tão bom. Adoramos trabalhar com você e toda a equipe, e iremos recomendá-lo a outras pessoas!</p>
+                                        <div class="small text-muted">- Arthur Morgan, Petrópolis</div>
                                     </div>
                                 </div>
                             </div>
@@ -265,8 +253,8 @@
                                 <div class="d-flex">
                                     <div class="flex-shrink-0"><i class="bi bi-chat-right-quote-fill text-primary fs-1"></i></div>
                                     <div class="ms-4">
-                                        <p class="mb-1">The whole team was a huge help with putting things together for our company and brand. We will be hiring them again in the near future for additional work!</p>
-                                        <div class="small text-muted">- Client Name, Location</div>
+                                        <p class="mb-1">Toda a equipe foi uma grande ajuda para organizar a usinagem para nossa empresa. Estamos ansiosos pelo que ainda há de vir!</p>
+                                        <div class="small text-muted">- John Marston, Caxias do Sul</div>
                                     </div>
                                 </div>
                             </div>
@@ -276,12 +264,12 @@
             </div>
         </section>
         <!-- Contact section-->
-        <section class="bg-light py-5">
+        <section class="bg-light py-5" id="contact">
             <div class="container px-5 my-5 px-5">
                 <div class="text-center mb-5">
                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
-                    <h2 class="fw-bolder">Get in touch</h2>
-                    <p class="lead mb-0">We'd love to hear from you</p>
+                    <h2 class="fw-bolder">Entrar em contato</h2>
+                    <p class="lead mb-0">Adoraríamos ouvir de você</p>
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-6">
@@ -296,27 +284,27 @@
                             <!-- Name input-->
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                <label for="name">Full name</label>
-                                <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                                <label for="name">Nome completo</label>
+                                <div class="invalid-feedback" data-sb-feedback="name:required">O nome é necessário.</div>
                             </div>
                             <!-- Email address input-->
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
-                                <label for="email">Email address</label>
-                                <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                                <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                                <label for="email">Email</label>
+                                <div class="invalid-feedback" data-sb-feedback="email:required">O Email é necessário.</div>
+                                <div class="invalid-feedback" data-sb-feedback="email:email">O Email não é válido.</div>
                             </div>
                             <!-- Phone number input-->
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
-                                <label for="phone">Phone number</label>
-                                <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                                <label for="phone">Telefone</label>
+                                <div class="invalid-feedback" data-sb-feedback="phone:required">O número de telefone é necessário.</div>
                             </div>
                             <!-- Message input-->
                             <div class="form-floating mb-3">
                                 <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
-                                <label for="message">Message</label>
-                                <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                                <label for="message">Sua mensagem</label>
+                                <div class="invalid-feedback" data-sb-feedback="message:required">A mensagem é necessária.</div>
                             </div>
                             <!-- Submit success message-->
                             <!---->
@@ -324,19 +312,17 @@
                             <!-- has successfully submitted-->
                             <div class="d-none" id="submitSuccessMessage">
                                 <div class="text-center mb-3">
-                                    <div class="fw-bolder">Form submission successful!</div>
-                                    To activate this form, sign up at
-                                    <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                    <div class="fw-bolder">Formulário envia com sucesso!</div>
+                                    
                                 </div>
                             </div>
                             <!-- Submit error message-->
                             <!---->
                             <!-- This is what your users will see when there is-->
                             <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Erro ao enviar a mensagem!</div></div>
                             <!-- Submit Button-->
-                            <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
+                            <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Enviar</button></div>
                         </form>
                     </div>
                 </div>
@@ -347,7 +333,10 @@
             <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; FactoryMS 2022</p></div>
         </footer>
         <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!--
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <!-- Core theme JS-->
         <script src="static/scripts.js"></script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
