@@ -20,6 +20,17 @@ PRAGMA foreign_keys = 1;
 
 db = SQLAlchemy()
 
+class Plano(db.Model):
+	__tablename__ = "planos"
+	id = db.Column(db.Integer, primary_key=True)
+	name = db.Column(db.String(50), nullable=False)
+	nro_maquinas = db.Column(db.Integer, nullable=False)
+	nro_dispositivos = db.Column(db.Integer, nullable=False)
+	nro_pecas = db.Column(db.Integer, nullable=False)
+	nro_ferramentas = db.Column(db.Integer, nullable=False)
+	preco = db.Column(db.String(50), nullable=False)
+	#user = db.relationship('User', backref='planos', lazy=True, uselist=False, cascade='all,delete')
+
 
 class Profile(db.Model):
 	__tablename__ = "profiles"
@@ -37,14 +48,8 @@ class User(UserMixin, db.Model):
 	password = db.Column(db.String(250), nullable=False)	
 	admin = db.Column(db.Boolean, nullable=True, default=False)
 	profile_id = db.Column(db.Integer, db.ForeignKey('profiles.id'), nullable=True)
-	#factories = db.relationship("Fabrica")
-
-class Fabrica(db.Model):
-    __tablename__ = "factory"
-    id = db.Column(db.Integer, primary_key=True)	
-name = db.Column(db.String(50), nullable=True)
-	#user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
-
+	#plano_id = db.Column(db.Integer, db.ForeignKey('planos.id'), nullable=True)
+	
 class Categoria(db.Model):
 	__tablename__ = "categorias"
 	id = db.Column(db.Integer, primary_key=True)
