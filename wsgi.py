@@ -6,4 +6,4 @@ from app import app
 if __name__=="__main__":
     app.run(debug=True)
 
-    # https://github.com/thanh-cao/ms3-stock-management
+# https://github.com/thanh-cao/ms3-stock-management
