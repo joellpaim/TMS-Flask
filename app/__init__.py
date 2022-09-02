@@ -144,7 +144,7 @@ def home():
 		maquinas = Maquina.query.all()
 		return render_template("home.html", items=items, maquinas=maquinas)
 	else:
-		return redirect(url_for('inicio'))
+		return redirect(url_for('login'))
 
 @app.route("/profile")
 def profile():
