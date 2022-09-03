@@ -140,8 +140,11 @@ def inicio():
 @app.route("/")
 def home():
 	if current_user.is_authenticated:
+
+		ROWS_PER_PAGE = 10
+		page = request.args.get('page', 1, type=int)
 		items = Item.query.all()
-		maquinas = Maquina.query.all()
+		maquinas = Maquina.query.paginate(page=page, per_page=ROWS_PER_PAGE)
 		return render_template("home.html", items=items, maquinas=maquinas)
 	else:
 		return redirect(url_for('login'))

@@ -21,11 +21,11 @@
 	
 	{% if search %}
 	<div class="container-xl">
-		<div class="row">
+		<div class="row p-5">
 			<div class="col-md-12">
 				<h2>Resultado da busca por "{{ query }}":</h2>
 					<div class="row">
-						{% for maquina in maquinas %}
+						{% for maquina in maquinas.items %}
 						<div class="col-sm-3 mb-3">
 							<div class="card card-maquina" style="width: 18rem;">
 								<img src="{{ maquina.image }}" class="card-img-top" alt="{{ maquina.name }}">
@@ -45,14 +45,14 @@
 	{% else %}
 
 	<div class="container-xl">
-		<div class="row">
+		<div class="row p-5">
 			<div class="col-md-12">
-				<h2>Máquinas <b>{{ maquinas | length }}</b></h2>				
+				<h2 class="card card-maquina p-2">Máquinas</h2>		
 					<div class="row">
-						{% for maquina in maquinas %}
-						<div class="col-sm-3 mb-3 tt">
-							<div class="card card-maquina" style="max-width: 18rem;">
-								<img src="{{ maquina.image }}" class="card-img-top" alt="{{ maquina.name }}">
+						{% for maquina in maquinas.items %}
+						<div class="col-sm-2 mb-3">
+							<div class="card card-maquina">
+								<img src="{{ maquina.image }}" class="card-img-top p-4" alt="{{ maquina.name }}">
 								<div class="card-body">
 								  <h5 class="card-title">{{ maquina.code }}</h5>
 								  <h6 class="card-text">{{ maquina.name }}</h6>
@@ -64,6 +64,43 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- Pagination Links-->
+			<div class="text-center">
+				<a href="{{ url_for('home', page=maquinas.prev_num) }}"
+				class="btn btn-outline-dark 
+				{% if maquinas.page == 1 %}disabled{% endif %}">
+					&laquo;
+				</a>
+			<!-- Loop through the number of pages to display a link for each-->
+				{% for page_num in maquinas.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+					{% if page_num %}
+						<!-- Check for the active page and set the link to "Active"-->
+						{% if maquinas.page == page_num %}
+						<a href="{{ url_for('home', page=page_num) }}"
+						class="btn btn-dark">
+							{{ page_num }}
+						</a>
+						{% else %}
+						<a href="{{ url_for('home', page=page_num) }}"
+						class="btn btn-outline-dark">
+							{{ page_num }}
+						</a>
+						{% endif %}
+					{% else %}
+						...
+					{% endif %}
+				{% endfor %}
+				<a href="{{ url_for('home', page=maquinas.next_num) }}"
+				class="btn btn-outline-dark 
+				{% if maquinas.page == maquinas.pages %}disabled{% endif %}">
+					&raquo;
+				</a>
+			</div>
+			<p class="text-center mt-3">
+			Página {{ maquinas.page }} de {{ maquinas.pages }}
+			</p>
+
 	</div>
 
 
@@ -77,6 +114,10 @@
 		<a href="{{ url_for('home') }}"></a>
 	</div>
 	{% endif %}
+
+	<footer class=" bg-dark mt-3" style="height: 10vh;">
+
+	</footer>
 	
 
 {% endblock %}
