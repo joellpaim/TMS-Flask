@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-	Login - TMS
+	Login - FactoryMS
 {% endblock %}
 
 {% block content %}
@@ -20,6 +20,10 @@
 	{% endwith %}
 	
 	<div class="forms login-form">
+		<div class="mx-auto text-center">
+			<img class="img-responsive" src="https://img.icons8.com/external-konkapp-outline-color-konkapp/64/000000/external-login-work-from-home-konkapp-outline-color-konkapp.png"/>
+		</div>
+		
 		{{ wtf.quick_form(form) }}
 
 		<hr>	

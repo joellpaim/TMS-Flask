@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-	Cadastro - TMS
+	Cadastro - FactoryMS
 {% endblock %}
 
 {% block content %}
@@ -19,6 +19,9 @@
 		{% endfor %}
 	{% endwith %}
 	<div class="forms login-form">
+		<div class="mx-auto text-center">
+			<img class="img-responsive" src="https://img.icons8.com/external-filled-outline-geotatah/64/000000/external-register-training-management-system-filled-outline-filled-outline-geotatah.png"/>
+		</div>
 		{{ wtf.quick_form(form) }}
 	</div>
 </div>
