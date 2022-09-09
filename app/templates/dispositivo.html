@@ -16,40 +16,56 @@
 	{% endfor %}
 	{% endwith %}
 
-			<div class="card">
-				<div class="img-wrapper" >
-					<img src="{{ dispositivo.image }}" class="rounded" style="max-height: 500px;">
-				</div>
-				<div class="right-item" style="float: right;">
-					<b>{{ dispositivo.name }}</b>
-					<span class="right-item">{{ dispositivo.code }}</span><br>                
-					<div class="details">{{ dispositivo.details | safe }}</div>                
-				</div>
-			</div>
-			{% if dispositivo.maquinas %}
-			<div class="container">
-			<h3 class="mt-3 text-center">Máquinas</h3><br>
-				<div class="row">
-					{% for maquina in dispositivo.maquinas %}
-					<div class="col-sm-3 mt-5">				
-						
-							<div class="card card-maquina mg-3 text-center p-2">
-								<div class="img-wrapper" >
-									<img src="{{ maquina.image }}" style="max-height: 200px;max-width: 200px;">
-								</div>
-								<h3>{{ maquina.code }}</h3>
-								<h5>{{ maquina.name }}</h5>
-								<a href="{{ url_for('maquina', id=maquina.id) }}" class="btn btn-detalhe">Ver detalhes</a>
-							</div>
-						
+	<!--Detalhes do dispositivo-->
+	<section class="py-5">
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="row gx-4 gx-lg-5 align-items-center">
+				<div class="col-md-6"><img class="card-img-top mb-5 mb-md-0 rounded" src="{{ dispositivo.image }}" alt="{{ dispositivo.name }}" /></div>
+				<div class="col-md-6">
+					<h1 class="display-5 fw-bolder">{{ dispositivo.name }}</h1>
+					<div class="fs-5 mb-5">
+						<span>Código SAP {{ dispositivo.code }}</span>
 					</div>
+					<hr>
+					<h5>Detalhes: {{ dispositivo.details | safe }}</h5>
+					<h5>Revisão programada: 01/02/2023</h5>
 					
-					{% endfor %}
 				</div>
 			</div>
-			{% else %}
-				<h3 class="text-center mt-3">Sem dispositivos cadastrados</h3>
-			{% endif %}
+		</div>
+	</section>	
+	
+	<!--Máquinas-->
+	<section>		
+		{% if dispositivo.maquinas %}
+		<div class="container">
+		<h3 class="mt-3 text-center">Máquinas</h3><br>
+			<div class="row">
+				{% for maquina in dispositivo.maquinas %}
+				<div class="col-sm-3 mt-5">				
+					
+						<div class="card card-maquina mg-3 text-center p-2">
+							<div class="img-wrapper" >
+								<img src="{{ maquina.image }}" style="max-height: 200px;max-width: 200px;">
+							</div>
+							<h3>{{ maquina.code }}</h3>
+							<h5>{{ maquina.name }}</h5>
+							<a href="{{ url_for('maquina', id=maquina.id) }}" class="btn btn-detalhe">Ver detalhes</a>
+						</div>
+					
+				</div>
+				
+				{% endfor %}
+			</div>
+		</div>
+		{% else %}
+			<h3 class="text-center mt-3">Sem máquinas cadastradas</h3>
+		{% endif %}
+	</section>
+
+
+
+
 
 {% endblock %}
 

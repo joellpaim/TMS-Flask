@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-	{{ item.name }} - TMS
+	{{ item.name }} - FactoryMS
 {% endblock %}
 
 {% block content %}
@@ -16,11 +16,28 @@
 	{% endfor %}
 	{% endwith %}
 
-			<div class="item-display">				
-				<b>{{ item.code }}</b>
-				<span class="right-item">{{ item.name }}</span>
-                <div class="details">{{ item.details | safe }}</div>				
+	<!--Detalhes do produto-->
+	<section class="py-5">
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="row gx-4 gx-lg-5 align-items-center">
+				<div class="col-md-6"><img class="card-img-top mb-5 mb-md-0 rounded" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsjHiGs2YF1133nBlHiTuO69tCRjR6DfNyDQ&usqp=CAU" alt="{{ item.name }}" /></div>
+				<div class="col-md-6">
+					<h1 class="display-5 fw-bolder">{{ item.name }}</h1>
+					<div class="fs-5 mb-5">
+						<span>Código SAP {{ item.code }}</span>
+					</div>
+					<hr>
+					<h5>Detalhes: {{ item.details | safe }}</h5>
+					<hr>
+                        <div class="d-flex">
+							<a class="btn btn-info mr-3">Editar</a>
+							<a class="btn btn-danger">Excluir</a>
+                        </div>					
+				</div>
 			</div>
+		</div>
+	</section>
+
 
 {% endblock %}
 

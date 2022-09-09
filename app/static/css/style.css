@@ -221,3 +221,6 @@ h2.barra::after {
 	  transform: rotate(1turn);
 	}
 }
+.svg-bg {
+	background-image: url("sun-tornado.svg");
+}

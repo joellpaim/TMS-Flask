@@ -21,11 +21,11 @@
 		  <button class="button is-primary" id="submitBtn">Purchase!</button>
 		</div>
 		 -->
-		 <!-- Product section-->
-		 <section class="py-5">
+		 <!-- Detalhes da Máquina-->
+		<section class="py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{ maquina.image }}" alt="..." /></div>
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0 rounded" src="{{ maquina.image }}" alt="{{ maquina.name }}" /></div>
                     <div class="col-md-6">
                         <!--<div class="small mb-1">{{ maquina.code }}</div>-->
                         <h1 class="display-5 fw-bolder">{{ maquina.name }}</h1>
@@ -41,21 +41,22 @@
 						<hr>
 
                         <div class="d-flex">
-							<a href="#dispositivos" class="btn btn-info mr-3">Dispositivos</a>
-							<a href="#produtos" class="btn btn-info">Produtos</a>
+							<a id="btn-dispositivos" class="btn btn-info mr-1 text-white">Dispositivos</a>
+							<a id="btn-produtos" class="btn btn-info text-white">Produtos</a>														
                         </div>
                     </div>
                 </div>
             </div>
-        </section>	  
+        </section>			
 			
 		<!--Produtos-->
-		<section id="produtos" class="sec">
+		<section id="produtos" class="sec" style="display: none;">
 		
-			{% if maquina.itens %}
-			<div class="container">
+			{% if maquina.itens %}			
+			<div class="container produtos">
 			<h3 class="mt-3 text-center">Produtos <b>{{ maquina.itens | length}}</b> </h3><br>
-				<div class="row">
+			<input id="myInputP" type="text" placeholder="Buscar...">
+				<div id="produto" class="row">
 					{% for item in maquina.itens %}
 					<div class="col-sm-3 mg-3 mt-3">				
 						
@@ -77,12 +78,12 @@
 		</section>
 
 		<!--Dispositivos-->
-		<section id="dispositivos" class="sec">
+		<section id="dispositivos" class="sec" style="display: none;">
 		{% if maquina.dispositivos %}
 		<div class="container">				
 		<h3 class="mt-3 text-center">Dispositivos <b>{{ maquina.dispositivos | length}}</b></h3><br>
-		<a href="#produtos" class="btn btn-info">Produtos</a>
-			<div class="row mt-3">
+		<input id="myInputD" type="text" placeholder="Buscar...">
+			<div id="dispositivo" class="row mt-3">
 				{% for dispositivo in maquina.dispositivos %}
 				<div class="col-sm-3 mg-3">				
 					
@@ -104,7 +105,51 @@
 			<h3 class="text-center mt-3">Sem dispositivos cadastrados</h3>
 		{% endif %}
 
-		</section>
+		</section>		
+
+		<!--Mostra produtos-->
+		<script>
+		$(document).ready(function(){
+			$("#btn-produtos").click(function(){
+			  $("#produtos").slideToggle("slow");
+			  $("#dispositivos").hide("slow");
+			});
+		  });
+		</script>
+
+		<!--Mostra Dispositivos-->
+		<script>
+			$(document).ready(function(){
+				$("#btn-dispositivos").click(function(){
+				$("#dispositivos").slideToggle("slow");
+				$("#produtos").hide("slow");
+				});
+			});
+		</script>
+
+		<!--Busca Produtos-->
+		<script>
+			$(document).ready(function(){
+			$("#myInputP").on("keyup", function() {
+				var value = $(this).val().toLowerCase();
+				$("#produto div").filter(function() {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
+			});
+			});
+		</script>
+
+		<!--Busca Dispositivos-->
+		<script>
+			$(document).ready(function(){
+			$("#myInputD").on("keyup", function() {
+				var value = $(this).val().toLowerCase();
+				$("#dispositivo div").filter(function() {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
+			});
+			});
+		</script>
 		
 {% endblock %}
 
