@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Edit
+{% endblock %}
+<script src="https://js.stripe.com/v3/"></script>
+{% block content %}
+	{% with msgs =  get_flashed_messages(with_categories=True) %}
+	{% for c, msg in msgs %}
+		{% if c == 'error' %}
+			<div class="flash-error">
+		{% else %}
+			<div class="success">
+		{% endif %}
+			{{ msg }}</div><br>
+	{% endfor %}
+	{% endwith %}
+	
+	<div class="container mt-3 p-3">
+		<div class="row">
+			<!---->	
+			<form action="" method="post" class="" autocomplete="off">
+				{{ form.csrf_token }}
+					<div class="form-group">
+						{{ form.code.label }}
+						{{ form.code(class='form-control') }}
+						{% for error in form.code.errors %}
+						<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+				  	</div>
+
+					<div class="form-group">
+						{{ form.name.label }}
+						{{ form.name(class='form-control') }}
+						{% for error in form.name.errors %}
+						<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+				  	</div>
+
+					<div class="form-group">
+						<div class="col-md-12 d-flex">
+							<div class="col-md-8">
+								{{ form.image.label }}
+								{{ form.image(class='form-control') }}
+								{% for error in form.image.errors %}
+								<span style="color: red;">[{{ error }}]</span>
+								{% endfor %}
+							</div>
+							<div class="col-md-4">
+								{% if form.image.data %}
+								<div class="col-md-4">
+									<img class="img" id="preview" src="{{ form.image.data }}" alt="">
+								</div>
+								{% else %}				
+								{% endif %}
+							</div>
+						</div>			
+				  	</div>
+
+					<div class="form-group">
+						{{ form.category_id.label }}
+						{{ form.category_id(class='form-control') }}
+						{% for error in form.category_id.errors %}
+						<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+				  	</div>
+
+					<div class="form-group">
+						{{ form.dispositivos.label }}
+						{{ form.dispositivos(class='form-control') }}
+						{% for error in form.dispositivos.errors %}
+						<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+				  	</div>
+
+					<div class="row">
+						<span>{{ form.items.label }}</span>
+						<div class="col-xs-5 col-md-5 col-sm-5">
+							
+							<div class="form-group ">
+								<label for="all_items" class="col-form-label">Todos os produtos cadastrados</label>
+								{{ form.all_items(size=10, class='form-control',  multiple="multiple") }}
+								<span style="color: #f00"> {% if form.all_items.errors %}{{ form.all_items.errors[0] }}{% endif %}</span>
+							</div>
+						</div>
+						<div class="col-xs-2 col-md-2 col-sm-2" style="padding-top: 7%;">
+							<button type="button" id="multiselect_rightAll" class="btn btn-block btn-outline-info">>></button>
+							<button type="button" id="multiselect_rightSelected" class="btn btn-block btn-outline-info">></button>
+							<button type="button" id="multiselect_leftSelected" class="btn btn-block btn-outline-info"><</button>
+							<button type="button" id="multiselect_leftAll" class="btn btn-block btn-outline-info"><<</button>
+						</div>
+						<div class="col-xs-5 col-md-5 col-sm-5">
+							<div class="form-group ">
+								<label for="items" class="col-form-label">Produtos cadastrados na {{ maquina.code }}</label>
+								{{ form.items(size=10, class='form-control',  multiple="multiple") }}								
+								<span style="color: #f00"> {% if form.items.errors %}{{ form.items.errors[0] }}{% endif %}</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						{{ form.ferramentas.label }}
+						{{ form.ferramentas(class='form-control') }}
+						{% for error in form.ferramentas.errors %}
+						<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+				  	</div>
+
+					<div class="text-left">
+					   <button type="submit" class="btn btn-outline-success">Salvar</button>
+					</div>
+				</form>
+				
+				
+			
+			
+
+		</div>
+		
+	</div>
+	
+    
+	<script>
+		function readImage() {
+		if (this.files && this.files[0]) {
+			var file = new FileReader();
+			file.onload = function(e) {
+				document.getElementById("preview").src = e.target.result;
+			};       
+			file.readAsDataURL(this.files[0]);
+		}
+	}
+	
+	document.getElementById("img-input").addEventListener("change", readImage, false);
+	</script>
+
+	
+    
+{% endblock %}

@@ -31,15 +31,22 @@
                         <h1 class="display-5 fw-bolder">{{ maquina.name }}</h1>
                         <div class="fs-5 mb-5">
                             <span>Código SAP {{ maquina.code }}</span>
+							<br>
+							<span>Pecas {{ maquina.itens | length }}</span>
                         </div>
 						<h5>Detalhes: {{ maquina.details | safe }}</h5>
 						<h5>Tamanho do Magazine: 30</h5>
 						<h5>RPM Max: 15000</h5>
 						<h5>Data de aquisição: 12/12/2021</h5>
 						<h5>Serial: bg15423554234</h5>
+						<a class="btn btn-info" href="{{ url_for('edit', type='maquina', id=maquina.id) }}">&#9998;</a>
 
 						<hr>
-
+						<p>Indíce de confiabilidade</p>
+						<div class="progress">
+							<div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">75%</div>
+						</div>
+						<hr>
                         <div class="d-flex">
 							<a id="btn-dispositivos" class="btn btn-info mr-1 text-white">Dispositivos</a>
 							<a id="btn-produtos" class="btn btn-info text-white">Produtos</a>														

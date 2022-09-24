@@ -1,14 +1,19 @@
-from email.mime import image
 import profile
-from flask import Blueprint, render_template, url_for, flash, request
-from werkzeug.utils import redirect
-from werkzeug.security import generate_password_hash, check_password_hash
-from ..db_models import Item, db, User, Categoria, Dispositivo, Ferramenta, Inserto, Maquina, maq_disp, maq_ferr, maq_item
-from ..admin.forms import AddItemForm, AdminRegisterForm, CadastroCategoria, CadastroDispositivo, CadastroFerramenta, CadastroInserto, CadastroMaquina
-from ..funcs import admin_only
-from flask_login import LoginManager, login_user, current_user, login_required, logout_user
-from PIL import Image
+from email.mime import image
 
+from flask import Blueprint, flash, render_template, request, url_for
+from flask_login import (LoginManager, current_user, login_required,
+                         login_user, logout_user)
+from PIL import Image
+from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.utils import redirect
+
+from ..admin.forms import (AddItemForm, AdminRegisterForm, CadastroCategoria,
+                           CadastroDispositivo, CadastroFerramenta,
+                           CadastroInserto, CadastroMaquina)
+from ..db_models import (Categoria, Dispositivo, Ferramenta, Inserto, Item,
+                         Maquina, User, db, maq_disp, maq_ferr, maq_item)
+from ..funcs import admin_only
 
 admin = Blueprint("admin", __name__, url_prefix="/admin",
                   static_folder="static", template_folder="templates")

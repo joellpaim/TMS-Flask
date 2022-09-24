@@ -98,8 +98,8 @@ class Maquina(db.Model):
 	ferramentas = db.relationship('Ferramenta', secondary=maq_ferr, lazy='subquery',
 		backref=db.backref('maquinas', lazy=True))
 
-	def __str__(self):
-    		return self.code
+	def __repr__(self):
+		return self.code
 
 class Dispositivo(db.Model):
 	__tablename__ = "dispositivos"
@@ -109,6 +109,9 @@ class Dispositivo(db.Model):
 	category = db.Column(db.Text, nullable=False)
 	image = db.Column(db.String(250), nullable=False)
 	details = db.Column(db.String(250), nullable=False)
+
+	def __repr__(self):
+		return self.code
 
 item_ferr = db.Table('item_ferr',
     db.Column('ferr_id', db.Integer, db.ForeignKey('ferramentas.id'), primary_key=True),
@@ -124,7 +127,10 @@ class Item(db.Model):
 	image = db.Column(db.String(250), nullable=False)
 	details = db.Column(db.String(250), nullable=False)
 	ferramentas = db.relationship('Ferramenta', secondary=item_ferr, lazy='subquery',
-		backref=db.backref('items', lazy=True))
+		backref=db.backref('items', lazy=True))	
+
+	def __repr__(self):
+		return self.code
 
 ferr_ins = db.Table('ferr_ins',
     db.Column('ins_id', db.Integer, db.ForeignKey('insertos.id'), primary_key=True),
@@ -143,6 +149,9 @@ class Ferramenta(db.Model):
 	insertos = db.relationship('Inserto', secondary=ferr_ins, lazy='subquery',
 		backref=db.backref('ferramentas', lazy=True))
 
+	def __repr__(self):
+		return self.code
+
 class Inserto(db.Model):
 	__tablename__ = "insertos"
 	id = db.Column(db.Integer, primary_key=True)
@@ -152,3 +161,6 @@ class Inserto(db.Model):
 	category = db.Column(db.Text, nullable=False)
 	image = db.Column(db.String(250), nullable=False)
 	details = db.Column(db.String(250), nullable=False)
+
+	def __repr__(self):
+		return self.code
