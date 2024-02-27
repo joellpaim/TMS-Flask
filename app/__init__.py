@@ -33,7 +33,7 @@ stripe_keys = {
 stripe.api_key = stripe_keys["secret_key"]
 
 app.config["SECRET_KEY"] = os.environ["SECRET_KEY"]
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ["DB_URI"]
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///test.db" # os.environ["DB_URI"]
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['MAIL_USERNAME'] = os.environ["EMAIL"]
 app.config['MAIL_PASSWORD'] = os.environ["PASSWORD"]

@@ -11,9 +11,9 @@
 	{% with msgs =  get_flashed_messages(with_categories=True) %}
 		{% for c, msg in msgs %}
 			{% if c == 'error' %}
-				<div class="flash-error">
+				<div class="alert alert-danger" role="alert">
 			{% else %}
-				<div class="success">
+				<div class="alert alert-success" role="alert">
 			{% endif %}
 				{{ msg | safe }}</div><br>
 		{% endfor %}
